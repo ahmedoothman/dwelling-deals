@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import styles from './Home.module.scss';
 function Home() {
+  // fetch data
   return <div>Home</div>;
 }
 
