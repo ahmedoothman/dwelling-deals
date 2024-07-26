@@ -7,6 +7,8 @@ import Footer from '../components/LandingPageComponents/Footer';
 function LandingPage() {
   return <div>
 
+
+
     <ExplorePart></ExplorePart>
     <MapSection></MapSection>
     <EnterEmail></EnterEmail>
