@@ -8,7 +8,7 @@ function SecondSection() {
           <Typography variant="h4" sx={{ fontWeight: "500", color: "#201E43" }}>
             See how Trulia can help
           </Typography> 
-      </Box> 
+       </Box> 
         <MultiActionAreaCard/>
         </>
     )

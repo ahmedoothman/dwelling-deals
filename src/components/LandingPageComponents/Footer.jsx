@@ -17,7 +17,7 @@ const Footer = () => {
         <Box  sx={{mt:5}}>
            <Stack >
             <Stack direction={'row'} justifyContent={"space-between"}>
-                <Typography variant='p'p={{md:4,xs:0,sm:2}} fontSize={{ lg:24,md:12,xs:10}}><b>LOGO</b> <br />
+                <Typography variant='p'p={{md:4,xs:0,sm:2}} fontSize={{ lg:20,md:12,xs:10}}><b>LOGO</b> <br />
                 <Typography variant='p' color={grey[700]} fontSize={{lg:12,md:10,xs:9}}>
                     Lorem ipsum dolor 
                     sit amet consectetur 

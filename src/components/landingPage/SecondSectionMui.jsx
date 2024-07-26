@@ -15,12 +15,11 @@ export default function MultiActionAreaCard() {
       justifyContent="center" 
       alignItems="center"
       margin={5}
-     
       gap={5}
       sx={{ 
         flexWrap: {md:"nowrap",lg:'wrap'}, 
         // width: {md:"50%" , lg:"100%"} ,
-        width: { xs: '100%', md: '100%',lg:"100%" }, 
+        width: { xs: '100%', md: '100%',lg:"90%" }, 
         maxWidth: '1200px', 
         marginLeft: { xs: '0%',lg:"10%" },
         marginTop: { xs: '2%', md: '4%' }
