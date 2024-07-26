@@ -8,9 +8,9 @@ const grey5=grey[500];
 
 const CardWithoutBtn = () => {
     return (
-     <Stack direction={"row"} spacing={4} p={4} justifyContent={'center'}>
+     <Stack direction={{xs:"column",md:"row"}} textAlign={{xs:"center",md:"left"}} alignItems={{xs:"center"}} spacing={4} p={4} justifyContent={'center'}>
 
-        <Card sx={{ width:"300px","&:hover":{transform:"scale(1.05)", boxShadow:`5px 5px 24px ${grey[300]}` }}}>
+        <Card sx={{width:"300px" ,"&:hover":{transform:"scale(1.05)", boxShadow:`5px 5px 24px ${grey[300]}` }}}>
             <CardMedia
             component={"img"}
             image='src\assets\landingpageImages\2.jpg'
