@@ -11,10 +11,16 @@ import { router } from './router.jsx';
 import store from './store/index.js';
 import { Provider } from 'react-redux';
 
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './mui/theme.js';
+
+import LoadingPage from './pages/LoadingPage.jsx';
 ReactDOM.createRoot(document.getElementById('root')).render(
   <Provider store={store}>
-    <Suspense fallback={<div>Loading...</div>}>
-      <RouterProvider router={router} />
-    </Suspense>
+    <ThemeProvider theme={theme}>
+      <Suspense fallback={<LoadingPage />}>
+        <RouterProvider router={router} />
+      </Suspense>
+    </ThemeProvider>
   </Provider>
 );

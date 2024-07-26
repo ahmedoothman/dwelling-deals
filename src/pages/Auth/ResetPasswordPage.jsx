@@ -1,51 +1,39 @@
 import React, { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
-import CssBaseline from '@mui/material/CssBaseline';
+import CircularProgress from '@mui/material/CircularProgress';
+import { Alert } from '@mui/material';
+import OTP from '../../components/Auth/OTP';
+import { resetPasswordService } from '../../services/userService';
+import { useNavigate } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
-import CircularProgress from '@mui/material/CircularProgress';
-import Alert from '@mui/material/Alert';
-import Grid from '@mui/material/Grid';
-import { useNavigate } from 'react-router-dom';
-import { loginService } from '../../services/userService';
-function Copyright(props) {
-  return (
-    <Typography
-      variant='body2'
-      color='text.secondary'
-      align='center'
-      {...props}
-    >
-      {'Copyright © '}
-      <Link color='inherit' href='https://mui.com/'>
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
+import CssBaseline from '@mui/material/CssBaseline';
+import Copyright from '../../components/Auth/Copyright';
 
-export default function LoginPage() {
-  const [email, setEmail] = useState('');
+export default function ResetPasswordPage() {
+  const [otp, setOtp] = useState('');
   const [password, setPassword] = useState('');
+  const [passwordConfirm, setPasswordConfirm] = useState('');
   const [error, setError] = useState('');
-  const [loginPending, setLoginPending] = useState(false);
+  const [resetPending, setResetPending] = useState(false);
   const navigate = useNavigate();
 
-  const handleSubmit = async (event) => {
+  const handleSubmitReset = async (event) => {
     event.preventDefault();
-    setLoginPending(true);
-    const response = await loginService({ email, password });
+    if (password !== passwordConfirm) {
+      setError('Passwords do not match');
+      return;
+    }
+    setResetPending(true);
+    const response = await resetPasswordService(otp, password, passwordConfirm);
     if (response.status === 'success') {
-      navigate('/dashboard'); // Navigate to the dashboard or main page
+      navigate('/auth'); // Navigate to login page
     } else {
       setError(response.message);
     }
-    setLoginPending(false);
+    setResetPending(false);
   };
 
   return (
@@ -82,67 +70,66 @@ export default function LoginPage() {
             }}
           >
             <Typography component='h1' variant='h5'>
-              Sign In
+              Reset Password
             </Typography>
-            <Box component='form' onSubmit={handleSubmit} sx={{ mt: 3 }}>
-              <TextField
-                required
-                fullWidth
-                id='email'
-                label='Email Address'
-                name='email'
-                autoComplete='email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                sx={{ mb: 2 }}
+            <Box
+              component='form'
+              onSubmit={handleSubmitReset}
+              sx={{
+                mt: 3,
+                display: 'flex',
+                flexDirection: 'column',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              <Alert severity='info' sx={{ marginBottom: '10px' }}>
+                Please enter the OTP sent to your email and your new password
+              </Alert>
+              <OTP
+                separator={<span></span>}
+                value={otp}
+                onChange={setOtp}
+                length={6}
               />
               <TextField
+                margin='normal'
                 required
                 fullWidth
                 name='password'
                 label='Password'
                 type='password'
                 id='password'
-                autoComplete='current-password'
+                autoComplete='new-password'
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                sx={{ mb: 2 }}
+                sx={{ marginBottom: '10px' }}
+              />
+              <TextField
+                margin='normal'
+                required
+                fullWidth
+                name='passwordConfirm'
+                label='Confirm Password'
+                type='password'
+                id='passwordConfirm'
+                autoComplete='new-password'
+                value={passwordConfirm}
+                onChange={(e) => setPasswordConfirm(e.target.value)}
+                sx={{ marginBottom: '10px' }}
               />
               {error && (
                 <Alert severity='error' sx={{ marginBottom: '10px' }}>
                   {error}
                 </Alert>
               )}
-              <Button
-                type='submit'
-                fullWidth
-                variant='contained'
-                sx={{ mt: 3, mb: 2 }}
-              >
-                {loginPending ? (
+              <Button type='submit' variant='contained' sx={{ mt: 3, mb: 2 }}>
+                {resetPending ? (
                   <CircularProgress color='inherit' size={25} />
                 ) : (
-                  'Sign In'
+                  'Reset Password'
                 )}
               </Button>
-              <Grid container>
-                <Grid item xs={6}>
-                  <Link href='/auth/forgot-password' variant='body2'>
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid
-                  item
-                  xs={6}
-                  sx={{
-                    textAlign: 'right',
-                  }}
-                >
-                  <Link href='/auth/register' variant='body2'>
-                    Don't have an account? Sign Up
-                  </Link>
-                </Grid>
-              </Grid>
             </Box>
           </Box>
           <Copyright sx={{ mt: 5 }} />

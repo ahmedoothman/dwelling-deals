@@ -4,7 +4,6 @@ import styles from './AuthBase.module.scss';
 function AuthBase() {
   return (
     <div>
-      AuthBase
       <Outlet />
     </div>
   );
