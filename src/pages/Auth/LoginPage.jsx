@@ -11,6 +11,9 @@ import Alert from '@mui/material/Alert';
 import Grid from '@mui/material/Grid';
 import { useNavigate } from 'react-router-dom';
 import { loginService } from '../../services/userService';
+import { useDispatch } from 'react-redux';
+import { authActions } from '../../store/auth-slice';
+
 function Copyright(props) {
   return (
     <Typography
@@ -35,12 +38,13 @@ export default function LoginPage() {
   const [error, setError] = useState('');
   const [loginPending, setLoginPending] = useState(false);
   const navigate = useNavigate();
-
+  const dispatch = useDispatch();
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoginPending(true);
     const response = await loginService({ email, password });
     if (response.status === 'success') {
+      dispatch(authActions.login(response.data));
       navigate('/dashboard'); // Navigate to the dashboard or main page
     } else {
       setError(response.message);
@@ -109,7 +113,7 @@ export default function LoginPage() {
                 sx={{ mb: 2 }}
               />
               {error && (
-                <Alert severity='error' sx={{ marginBottom: '10px' }}>
+                <Alert severity='error' sx={{ marginBottom: '5px' }}>
                   {error}
                 </Alert>
               )}

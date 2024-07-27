@@ -51,7 +51,32 @@ export const loginService = async (data) => {
   try {
     const response = await axios.post(`${API_URL}/api/users/login`, data);
     Cookies.set('token', response.data.token, { expires: 1 });
-    return { status: 'success', data: response.data.message };
+    return { status: 'success', data: response.data };
+  } catch (error) {
+    if (error.code === 'ERR_NETWORK') {
+      return {
+        status: 'error',
+        statusCode: error.code,
+        message: error.message + ' Please check your internet connection',
+      };
+    } else {
+      return {
+        status: 'error',
+        statusCode: error.response.statusCode,
+        message: error.response.data.message,
+      };
+    }
+  }
+};
+//getMe
+export const getMeService = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/api/users/me`, {
+      headers: {
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      },
+    });
+    return { status: 'success', data: response.data.data };
   } catch (error) {
     if (error.code === 'ERR_NETWORK') {
       return {
