@@ -16,6 +16,17 @@ const ForgotPasswordPage = lazy(() =>
 const ResetPasswordPage = lazy(() =>
   import('./pages/Auth/ResetPasswordPage.jsx')
 );
+
+/* 
+const pages = [
+  { title: 'Buy House', path: '/dashboard/buy' },
+  { title: 'Rent House', path: '/dashboard/rent' },
+  { title: 'Sell House', path: '/dashboard/myhouses' },
+  { title: 'About Us', path: '/about-us' },
+  { title: 'Contact Us', path: '/contact-us' },
+];
+
+*/
 // error
 const ErrorPage = lazy(() => import('./pages/ErrorPage.jsx'));
 const routes = [
@@ -29,11 +40,31 @@ const routes = [
         element: <LandingPage />,
       },
       {
+        path: 'about-us',
+        element: <LandingPage />,
+      },
+      {
+        path: 'contact-us',
+        element: <LandingPage />,
+      },
+      {
         path: '/dashboard',
         element: <DashboardBase />,
         children: [
           {
             index: true,
+            element: <Home />,
+          },
+          {
+            path: 'buy',
+            element: <Home />,
+          },
+          {
+            path: 'rent',
+            element: <Home />,
+          },
+          {
+            path: 'myhouses',
             element: <Home />,
           },
         ],

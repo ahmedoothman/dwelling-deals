@@ -85,7 +85,7 @@ export default function RegisterPage() {
               alignItems: 'center',
             }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <Avatar sx={{ m: 1, bgcolor: 'primary.main' }}>
               <LockOutlinedIcon />
             </Avatar>
             <Typography component='h1' variant='h5'>
@@ -178,14 +178,6 @@ export default function RegisterPage() {
                       />
                     </RadioGroup>
                   </FormControl>
-                </Grid>
-                <Grid item xs={12}>
-                  <FormControlLabel
-                    control={
-                      <Checkbox value='allowExtraEmails' color='primary' />
-                    }
-                    label='I want to receive inspiration, marketing promotions and updates via email.'
-                  />
                 </Grid>
               </Grid>
               {error && (

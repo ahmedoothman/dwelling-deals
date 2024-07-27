@@ -1,7 +1,7 @@
 import React from 'react';
 import { GridLoader } from 'react-spinners';
 import { Box, Container } from '@mui/material';
-
+import { PRIMARY_COLOR_DARK } from '../constants/styles/colors';
 export default function LoadingPage() {
   return (
     <Container component='main' maxWidth='xs' disableGutters>
@@ -15,7 +15,7 @@ export default function LoadingPage() {
           textAlign: 'center',
         }}
       >
-        <GridLoader size={30} color='#1976d2' />
+        <GridLoader size={30} color={PRIMARY_COLOR_DARK} />
       </Box>
     </Container>
   );

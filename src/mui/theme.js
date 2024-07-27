@@ -4,10 +4,10 @@ import { createTheme } from '@mui/material/styles';
 const theme = createTheme({
   palette: {
     primary: {
-      main: '#487eb0', // Primary color (e.g., blue)
+      main: '#201E43', // Primary color (e.g., blue)
     },
     secondary: {
-      main: '#6c757d', // Secondary color (e.g., gray)
+      main: '#9cc0cf', // Secondary color (e.g., gray)
     },
     background: {
       default: '#cdd0d1', // Background color for the app

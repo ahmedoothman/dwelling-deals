@@ -1,7 +1,8 @@
 import React from 'react';
 import { Box, Button, Typography } from '@mui/material';
-
+import { useNavigate } from 'react-router-dom';
 function ThirdSection() {
+  const navigate = useNavigate();
   return (
     <Box
       display='flex'
@@ -65,6 +66,7 @@ function ThirdSection() {
             background: '#201E43',
             padding: { xs: '8px 12px', md: '10px 15px' },
           }}
+          onClick={() => navigate('/dashboard')}
         >
           Explore more
         </Button>

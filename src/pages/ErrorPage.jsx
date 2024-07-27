@@ -1,8 +1,8 @@
 import React from 'react';
-import { Box, Typography, Button, Container } from '@mui/material';
+import { Box, Typography, Button, Container, CardMedia } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import SentimentVeryDissatisfiedIcon from '@mui/icons-material/SentimentVeryDissatisfied';
-import { DANGER_COLOR } from '../constants/styles/colors';
+import Icon404 from '../assets/icons/404.png';
+import { DANGER_COLOR, PRIMARY_COLOR_DARK } from '../constants/styles/colors';
 const ErrorPage = () => {
   const navigate = useNavigate();
 
@@ -33,16 +33,21 @@ const ErrorPage = () => {
             padding: '20px',
             borderRadius: '10px',
             width: '100%',
+            minHeight: '300px',
             maxWidth: '600px',
             margin: '40px',
-            color: DANGER_COLOR,
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
-          <SentimentVeryDissatisfiedIcon sx={{ fontSize: '60px', mb: 2 }} />
-          <Typography component='h1' variant='h3' gutterBottom>
-            404
-          </Typography>
-          <Typography component='p' variant='h6' gutterBottom>
+          <CardMedia
+            sx={{ height: 60, width: 60, marginBottom: 2 }}
+            image={Icon404}
+            title='404'
+          />
+          <Typography component='p' variant='h6' gutterBottom color='primary'>
             We can't seem to find the page you're looking for.
           </Typography>
           <Button

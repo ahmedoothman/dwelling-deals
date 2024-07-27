@@ -1,12 +1,11 @@
 import React from 'react';
-import styles from './LandingPage.module.scss';
-import SecondSection from '../components/landingPage/SecondSection';
 import FirstSection from '../components/landingPage/FirstSection';
+import SecondSection from '../components/landingPage/SecondSection';
 import ThirdSection from '../components/landingPage/ThirdSection';
-import ExplorePart from '../components/landingPageComponents/ExplorePart';
-import MapSection from '../components/landingPageComponents/MapSection';
-import EnterEmail from '../components/landingPageComponents/EnterEmail';
-import Footer from '../components/landingPageComponents/Footer';
+import FourthSection from '../components/landingPage/FourthSection';
+import MapSection from '../components/landingPage/MapSection';
+import EnterEmail from '../components/landingPage/EnterEmail';
+import Footer from '../components/landingPage/Footer';
 
 function LandingPage() {
   return (
@@ -14,7 +13,7 @@ function LandingPage() {
       <FirstSection />
       <SecondSection />
       <ThirdSection />
-      <ExplorePart></ExplorePart>
+      <FourthSection></FourthSection>
       <MapSection></MapSection>
       <EnterEmail></EnterEmail>
       <Footer></Footer>
