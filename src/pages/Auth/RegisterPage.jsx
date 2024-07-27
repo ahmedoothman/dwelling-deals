@@ -43,7 +43,6 @@ export default function RegisterPage() {
     setregisterPending(true);
     const response = await signUpService(dataObj);
     if (response.status === 'success') {
-      setMessage(response.data);
       navigate('/auth/verify-email'); // Navigate to the verification page
     } else {
       setError(response.message);
