@@ -21,6 +21,7 @@ export default function LoginPage() {
   const [loginPending, setLoginPending] = useState(false);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     setLoginPending(true);

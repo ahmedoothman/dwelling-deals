@@ -20,6 +20,7 @@ function NavBar() {
     { title: 'Home', path: '/dashboard' },
     { title: 'Buy House', path: '/dashboard/buy' },
     { title: 'Rent House', path: '/dashboard/rent' },
+    { title: 'Wishlist', path: '/dashboard/wishlist' },
     { title: 'Sell House', path: '/dashboard/myhouses' },
   ]);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
