@@ -1,7 +1,7 @@
 import React from 'react';
 
-function PreviewSection() {
-  return <div>PreviewSection</div>;
+function FilterSection() {
+  return <div>FilterSection</div>;
 }
 
-export default PreviewSection;
+export default FilterSection;

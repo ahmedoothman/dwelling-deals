@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
-
 import { Outlet } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { getMeService } from '../../services/userService';
+import { getAllHousesService } from '../../services/houseService';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth-slice';
+import { housesActions } from '../../store/houses-slice';
 import NavBar from '../../components/dashboard/NavBar';
 import LoadingPage from '../LoadingPage';
 import Footer from '../../components/dashboard/Footer';
@@ -14,6 +15,7 @@ function DashboardBase() {
   const dispatch = useDispatch();
   const [loading, setLoading] = useState(true);
   useEffect(() => {
+    // get user
     const getUser = async () => {
       const response = await getMeService();
       if (response.status === 'error') {
@@ -25,6 +27,14 @@ function DashboardBase() {
       }
     };
     getUser();
+    // get houses
+    const getHouses = async () => {
+      const response = await getAllHousesService();
+      if (response.status === 'success') {
+        dispatch(housesActions.setHouses(response.data));
+      }
+    };
+    getHouses();
   }, []);
   return (
     <div>
