@@ -13,25 +13,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 import { Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { forgotPasswordService } from '../../services/userService';
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant='body2'
-      color='text.secondary'
-      align='center'
-      {...props}
-    >
-      {'Copyright © '}
-      <Link color='inherit' href='https://mui.com/'>
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
+import Copyright from '../../components/Auth/Copyright';
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
   const [pending, setPending] = useState(false);

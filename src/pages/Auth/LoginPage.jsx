@@ -13,25 +13,7 @@ import { useNavigate } from 'react-router-dom';
 import { loginService } from '../../services/userService';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth-slice';
-
-function Copyright(props) {
-  return (
-    <Typography
-      variant='body2'
-      color='text.secondary'
-      align='center'
-      {...props}
-    >
-      {'Copyright © '}
-      <Link color='inherit' href='https://mui.com/'>
-        Your Website
-      </Link>{' '}
-      {new Date().getFullYear()}
-      {'.'}
-    </Typography>
-  );
-}
-
+import Copyright from '../../components/Auth/Copyright';
 export default function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
