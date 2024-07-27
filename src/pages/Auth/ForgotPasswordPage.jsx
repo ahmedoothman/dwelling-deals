@@ -1,16 +1,19 @@
 import React, { useState } from 'react';
-import Box from '@mui/material/Box';
+import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
 import TextField from '@mui/material/TextField';
+import Link from '@mui/material/Link';
+import Grid from '@mui/material/Grid';
+import Box from '@mui/material/Box';
+import LockOutlinedIcon from '@mui/icons-material/LockOutlined';
 import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
-import Link from '@mui/material/Link';
 import CircularProgress from '@mui/material/CircularProgress';
-import Alert from '@mui/material/Alert';
-import Grid from '@mui/material/Grid';
+import { Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import { loginService } from '../../services/userService';
+import { forgotPasswordService } from '../../services/userService';
+
 function Copyright(props) {
   return (
     <Typography
@@ -29,23 +32,23 @@ function Copyright(props) {
   );
 }
 
-export default function LoginPage() {
+export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [pending, setPending] = useState(false);
+  const [message, setMessage] = useState('');
   const [error, setError] = useState('');
-  const [loginPending, setLoginPending] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-    setLoginPending(true);
-    const response = await loginService({ email, password });
+    setPending(true);
+    const response = await forgotPasswordService(email);
     if (response.status === 'success') {
-      navigate('/dashboard'); // Navigate to the dashboard or main page
+      navigate('/auth/reset-password'); // Navigate to login page
     } else {
       setError(response.message);
     }
-    setLoginPending(false);
+    setPending(false);
   };
 
   return (
@@ -81,10 +84,18 @@ export default function LoginPage() {
               alignItems: 'center',
             }}
           >
+            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+              <LockOutlinedIcon />
+            </Avatar>
             <Typography component='h1' variant='h5'>
-              Sign In
+              Forgot Password
             </Typography>
-            <Box component='form' onSubmit={handleSubmit} sx={{ mt: 3 }}>
+            <Box
+              component='form'
+              noValidate
+              onSubmit={handleSubmit}
+              sx={{ mt: 3 }}
+            >
               <TextField
                 required
                 fullWidth
@@ -94,20 +105,13 @@ export default function LoginPage() {
                 autoComplete='email'
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
-                sx={{ mb: 2 }}
               />
-              <TextField
-                required
-                fullWidth
-                name='password'
-                label='Password'
-                type='password'
-                id='password'
-                autoComplete='current-password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                sx={{ mb: 2 }}
-              />
+
+              {message && (
+                <Alert severity='success' sx={{ marginBottom: '10px' }}>
+                  {message}
+                </Alert>
+              )}
               {error && (
                 <Alert severity='error' sx={{ marginBottom: '10px' }}>
                   {error}
@@ -119,33 +123,22 @@ export default function LoginPage() {
                 variant='contained'
                 sx={{ mt: 3, mb: 2 }}
               >
-                {loginPending ? (
+                {pending ? (
                   <CircularProgress color='inherit' size={25} />
                 ) : (
-                  'Sign In'
+                  'Send Reset Code'
                 )}
               </Button>
-              <Grid container>
-                <Grid item xs={6}>
-                  <Link href='/auth/forgot-password' variant='body2'>
-                    Forgot password?
-                  </Link>
-                </Grid>
-                <Grid
-                  item
-                  xs={6}
-                  sx={{
-                    textAlign: 'right',
-                  }}
-                >
-                  <Link href='/auth/register' variant='body2'>
-                    Don't have an account? Sign Up
+              <Grid container justifyContent='flex-end'>
+                <Grid item>
+                  <Link href='/auth' variant='body2'>
+                    Remember your password? Sign in
                   </Link>
                 </Grid>
               </Grid>
+              <Copyright sx={{ mt: 5 }} />
             </Box>
           </Box>
-          <Copyright sx={{ mt: 5 }} />
         </Box>
       </Box>
     </Container>
