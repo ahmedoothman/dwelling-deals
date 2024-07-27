@@ -1,13 +1,10 @@
-import ResponsiveAppBar from "./FirstSectionMui"
+import ResponsiveAppBar from './FirstSectionMui';
 function FirstSection() {
-    return (
-        <div>
-            <ResponsiveAppBar/>
-        </div>
-    )
+  return (
+    <div>
+      <ResponsiveAppBar />
+    </div>
+  );
 }
 
-export default FirstSection
-
-
-
+export default FirstSection;
