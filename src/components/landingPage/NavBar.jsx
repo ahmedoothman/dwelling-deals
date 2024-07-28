@@ -11,7 +11,7 @@ import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
 import { Link } from 'react-router-dom';
 const pages = [
-  { title: 'Buy House', path: '/dashboard/buy' },
+  { title: 'Buy House', path: '/dashboard/sale' },
   { title: 'Rent House', path: '/dashboard/rent' },
   { title: 'Sell House', path: '/dashboard/myhouses' },
   { title: 'About Us', path: '/about-us' },

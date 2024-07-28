@@ -18,10 +18,10 @@ import Cookies from 'js-cookie';
 function NavBar() {
   const [pages, setPages] = useState([
     { title: 'Home', path: '/dashboard' },
-    { title: 'Buy House', path: '/dashboard/buy' },
+    { title: 'Buy House', path: '/dashboard/sale' },
     { title: 'Rent House', path: '/dashboard/rent' },
     { title: 'Wishlist', path: '/dashboard/wishlist' },
-    { title: 'Sell House', path: '/dashboard/myhouses' },
+    { title: 'My Houses', path: '/dashboard/myhouses' },
   ]);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);

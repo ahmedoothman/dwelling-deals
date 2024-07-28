@@ -5,11 +5,15 @@ const App = lazy(() => import('./App.jsx'));
 const LandingPage = lazy(() => import('./pages/LandingPage.jsx'));
 const DashboardBase = lazy(() => import('./pages/Dashboard/DashboardBase.jsx'));
 const Home = lazy(() => import('./pages/Dashboard/Home.jsx'));
+const SalePage = lazy(() => import('./pages/Dashboard/SalePage.jsx'));
+const RentPage = lazy(() => import('./pages/Dashboard/RentPage.jsx'));
 // auth
 const AuthBase = lazy(() => import('./pages/Auth/AuthBase.jsx'));
 const Login = lazy(() => import('./pages/Auth/LoginPage.jsx'));
 const RegisterPage = lazy(() => import('./pages/Auth/RegisterPage.jsx'));
 const VerifyEmail = lazy(() => import('./pages/Auth/VerificationPage.jsx'));
+const WishlistPage = lazy(() => import('./pages/Dashboard/WishlistPage.jsx'));
+const MyHousesPage = lazy(() => import('./pages/Dashboard/MyHousesPage.jsx'));
 const ForgotPasswordPage = lazy(() =>
   import('./pages/Auth/ForgotPasswordPage.jsx')
 );
@@ -17,16 +21,6 @@ const ResetPasswordPage = lazy(() =>
   import('./pages/Auth/ResetPasswordPage.jsx')
 );
 
-/* 
-const pages = [
-  { title: 'Buy House', path: '/dashboard/buy' },
-  { title: 'Rent House', path: '/dashboard/rent' },
-  { title: 'Sell House', path: '/dashboard/myhouses' },
-  { title: 'About Us', path: '/about-us' },
-  { title: 'Contact Us', path: '/contact-us' },
-];
-
-*/
 // error
 const ErrorPage = lazy(() => import('./pages/ErrorPage.jsx'));
 const routes = [
@@ -56,16 +50,20 @@ const routes = [
             element: <Home />,
           },
           {
-            path: 'buy',
-            element: <Home />,
+            path: 'sale',
+            element: <SalePage />,
           },
           {
             path: 'rent',
-            element: <Home />,
+            element: <RentPage />,
+          },
+          {
+            path: 'wishlist',
+            element: <WishlistPage />,
           },
           {
             path: 'myhouses',
-            element: <Home />,
+            element: <MyHousesPage />,
           },
         ],
       },
