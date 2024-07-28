@@ -7,6 +7,7 @@ import MapSection from '../components/landingPage/MapSection';
 import EnterEmail from '../components/landingPage/EnterEmail';
 import Footer from '../components/landingPage/Footer';
 
+
 function LandingPage() {
   return (
     <div>
@@ -17,6 +18,7 @@ function LandingPage() {
       <MapSection></MapSection>
       <EnterEmail></EnterEmail>
       <Footer></Footer>
+      
     </div>
   );
 }
