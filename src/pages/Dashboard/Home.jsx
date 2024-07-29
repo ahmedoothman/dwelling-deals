@@ -11,13 +11,11 @@ function Home() {
   return (
     <div>
       {/* preview section */}
-      {/* <FilterSection /> */}
+      <FilterSection />
       {/* premium top for rent */}
-      {/* <TopPremium title='Top Premium for Rent' data={[]} /> */}
+      <TopPremium title='Top Premium for Rent' data={[]} />
       {/* premium top for sale */}
-      {/* <TopPremium title='Top Premium for Sale' data={[]} /> */}
-      <HouseDetails/>     
-
+      <TopPremium title='Top Premium for Sale' data={[]} />
     </div>
   );
 }
