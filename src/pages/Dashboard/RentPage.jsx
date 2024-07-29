@@ -19,7 +19,7 @@ function RentPage() {
           </Typography>
           <Grid container>
             {filteredHouses.map((house) => (
-              <Grid item xs={12} md={4}>
+              <Grid item xs={12} md={4} key={house._id}>
                 <Box
                   key={house._id}
                   style={{

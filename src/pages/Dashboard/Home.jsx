@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import FilterSection from '../../components/dashboard/FilterSection';
 import TopPremium from '../../components/dashboard/TopPremium';
 import HouseDetails from './HouseDetails';
+import { getTopRatedRentHousesService } from '../../services/houseService';
 function Home() {
   // fetch data
   useEffect(() => {
