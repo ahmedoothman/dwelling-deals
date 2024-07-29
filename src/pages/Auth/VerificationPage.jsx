@@ -10,6 +10,7 @@ import Typography from '@mui/material/Typography';
 import Container from '@mui/material/Container';
 import CssBaseline from '@mui/material/CssBaseline';
 import Copyright from '../../components/Auth/Copyright';
+import AuthWrap from '../../components/Auth/AuthWrap';
 export default function VerifyEmailPage() {
   const [otp, setOtp] = useState('');
   const [error, setError] = useState('');
@@ -31,76 +32,53 @@ export default function VerifyEmailPage() {
   return (
     <Container component='main' maxWidth={false} disableGutters>
       <CssBaseline />
-      <Box
-        sx={{
-          backgroundImage:
-            'url(https://images.unsplash.com/photo-1649770638916-f55225f9ffd0?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: 'calc(10px + 2vmin)',
-          minHeight: '100vh',
-        }}
-      >
+      <AuthWrap>
         <Box
           sx={{
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
-            padding: '20px',
-            borderRadius: '10px',
-            width: '100%',
-            maxWidth: '600px',
-            margin: '40px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
+          <Typography component='h1' variant='h5'>
+            Verify Email
+          </Typography>
           <Box
+            component='form'
+            onSubmit={handleSubmitVerify}
             sx={{
+              mt: 3,
               display: 'flex',
               flexDirection: 'column',
+              justifyContent: 'center',
               alignItems: 'center',
             }}
           >
-            <Typography component='h1' variant='h5'>
-              Verify Email
-            </Typography>
-            <Box
-              component='form'
-              onSubmit={handleSubmitVerify}
-              sx={{
-                mt: 3,
-                display: 'flex',
-                flexDirection: 'column',
-                justifyContent: 'center',
-                alignItems: 'center',
-              }}
-            >
-              <Alert severity='info' sx={{ marginBottom: '10px' }}>
-                Please enter the OTP sent to your email
+            <Alert severity='info' sx={{ marginBottom: '10px' }}>
+              Please enter the OTP sent to your email
+            </Alert>
+            <OTP
+              separator={<span></span>}
+              value={otp}
+              onChange={setOtp}
+              length={6}
+            />
+            {error && (
+              <Alert severity='error' sx={{ marginBottom: '10px' }}>
+                {error}
               </Alert>
-              <OTP
-                separator={<span></span>}
-                value={otp}
-                onChange={setOtp}
-                length={6}
-              />
-              {error && (
-                <Alert severity='error' sx={{ marginBottom: '10px' }}>
-                  {error}
-                </Alert>
+            )}
+            <Button type='submit' variant='contained' sx={{ mt: 3, mb: 2 }}>
+              {verifyPending ? (
+                <CircularProgress color='inherit' size={25} />
+              ) : (
+                'Verify Email'
               )}
-              <Button type='submit' variant='contained' sx={{ mt: 3, mb: 2 }}>
-                {verifyPending ? (
-                  <CircularProgress color='inherit' size={25} />
-                ) : (
-                  'Verify Email'
-                )}
-              </Button>
-            </Box>
+            </Button>
           </Box>
-          <Copyright sx={{ mt: 5 }} />
         </Box>
-      </Box>
+        <Copyright sx={{ mt: 5 }} />
+      </AuthWrap>
     </Container>
   );
 }

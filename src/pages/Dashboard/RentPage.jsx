@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Box, Typography } from '@mui/material';
 import SideFilter from '../../components/dashboard/SideFilter';
 import useFilteredHouses from '../../hooks/useFilteredHouses';
-
+import HouseCard from '../../components/dashboard/HouseCard';
 function RentPage() {
   const { filteredHouses, filtersState } = useFilteredHouses('rent');
 
@@ -19,36 +19,16 @@ function RentPage() {
           </Typography>
           <Grid container>
             {filteredHouses.map((house) => (
-              <Grid item xs={12} md={4} key={house._id}>
-                <Box
-                  key={house._id}
-                  style={{
-                    border: '1px solid #ccc',
-                    borderRadius: '5px',
-                    padding: '10px',
-                    margin: '10px',
-                    listStyleType: 'none',
-                  }}
-                >
-                  <h2>{house.title}</h2>
-                  <Box
-                    sx={{
-                      width: '100%',
-                      height: '200px',
-                      overflow: 'hidden',
-                      borderRadius: '5px',
-                      marginBottom: '10px',
-                    }}
-                  >
-                    <img src={house.imageUrl} alt={house.title} />
-                  </Box>
-                  <p>{house.description}</p>
-                  <p>{house.price}</p>
-                  <p>{house.area}</p>
-                  <p>{house.bedrooms}</p>
-                  <p>{house.bathrooms}</p>
-                  <p>{house.realtor.name}</p>
-                </Box>
+              <Grid
+                item
+                xs={12}
+                md={4}
+                key={house._id}
+                sx={{
+                  padding: '5px',
+                }}
+              >
+                <HouseCard key={house._id} data={house} />
               </Grid>
             ))}
           </Grid>

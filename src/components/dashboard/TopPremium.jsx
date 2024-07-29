@@ -1,27 +1,34 @@
 import React from 'react';
 import HouseCard from './HouseCard';
-import { Stack } from '@mui/material';
-function TopPremium({ title, data }) {
+import { Box, Grid } from '@mui/material';
 
-  // const obj={
-  //   bedrooms: 5,
-  //   bathrooms: 4,
-  //   area: 487,
-  //   imageUrl: "https://loremflickr.com/600/500/realtor",
-  //   price: 719,
-  //   title: "pauper voveo deficio",
-  //   _id: "66a537c1c2e29a5440b7303d"
-  // }
+function TopPremium({ title, data }) {
   return (
-    <div>
+    <Box
+      sx={{
+        width: { md: '90%', margin: '15px auto' },
+      }}
+    >
       <h2>{title}</h2>
-      <Stack flexDirection={"row"}>
-        {data.map((item, index) => {
-          return <HouseCard key={index} data={item} />;
+      <Grid container>
+        {data?.map((item, index) => {
+          return (
+            <Grid
+              item
+              xs={12}
+              md={4}
+              lg={3}
+              key={index}
+              sx={{
+                padding: '10px',
+              }}
+            >
+              <HouseCard key={index} data={item} />
+            </Grid>
+          );
         })}
-      </Stack>
-      
-    </div>
+      </Grid>
+    </Box>
   );
 }
 

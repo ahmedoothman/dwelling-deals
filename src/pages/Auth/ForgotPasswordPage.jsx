@@ -14,6 +14,7 @@ import { Alert } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { forgotPasswordService } from '../../services/userService';
 import Copyright from '../../components/Auth/Copyright';
+import AuthWrap from '../../components/Auth/AuthWrap';
 export default function ForgotPasswordPage() {
   const [email, setEmail] = useState('');
   const [pending, setPending] = useState(false);
@@ -36,93 +37,70 @@ export default function ForgotPasswordPage() {
   return (
     <Container component='main' maxWidth={false} disableGutters>
       <CssBaseline />
-      <Box
-        sx={{
-          backgroundImage:
-            'url(https://images.unsplash.com/photo-1649770638916-f55225f9ffd0?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-          display: 'flex',
-          alignItems: 'center',
-          justifyContent: 'center',
-          fontSize: 'calc(10px + 2vmin)',
-          minHeight: '100vh',
-        }}
-      >
+      <AuthWrap>
         <Box
           sx={{
-            backgroundColor: 'rgba(255, 255, 255, 0.9)',
-            padding: '20px',
-            borderRadius: '10px',
-            width: '100%',
-            maxWidth: '600px',
-            margin: '40px',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
           }}
         >
+          <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
+            <LockOutlinedIcon />
+          </Avatar>
+          <Typography component='h1' variant='h5'>
+            Forgot Password
+          </Typography>
           <Box
-            sx={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-            }}
+            component='form'
+            noValidate
+            onSubmit={handleSubmit}
+            sx={{ mt: 3 }}
           >
-            <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
-              <LockOutlinedIcon />
-            </Avatar>
-            <Typography component='h1' variant='h5'>
-              Forgot Password
-            </Typography>
-            <Box
-              component='form'
-              noValidate
-              onSubmit={handleSubmit}
-              sx={{ mt: 3 }}
-            >
-              <TextField
-                required
-                fullWidth
-                id='email'
-                label='Email Address'
-                name='email'
-                autoComplete='email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-              />
+            <TextField
+              required
+              fullWidth
+              id='email'
+              label='Email Address'
+              name='email'
+              autoComplete='email'
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+            />
 
-              {message && (
-                <Alert severity='success' sx={{ marginBottom: '10px' }}>
-                  {message}
-                </Alert>
+            {message && (
+              <Alert severity='success' sx={{ marginBottom: '10px' }}>
+                {message}
+              </Alert>
+            )}
+            {error && (
+              <Alert severity='error' sx={{ marginBottom: '10px' }}>
+                {error}
+              </Alert>
+            )}
+            <Button
+              type='submit'
+              fullWidth
+              variant='contained'
+              sx={{ mt: 3, mb: 2 }}
+            >
+              {pending ? (
+                <CircularProgress color='inherit' size={25} />
+              ) : (
+                'Send Reset Code'
               )}
-              {error && (
-                <Alert severity='error' sx={{ marginBottom: '10px' }}>
-                  {error}
-                </Alert>
-              )}
-              <Button
-                type='submit'
-                fullWidth
-                variant='contained'
-                sx={{ mt: 3, mb: 2 }}
-              >
-                {pending ? (
-                  <CircularProgress color='inherit' size={25} />
-                ) : (
-                  'Send Reset Code'
-                )}
-              </Button>
-              <Grid container justifyContent='flex-end'>
-                <Grid item>
-                  <Link href='/auth' variant='body2'>
-                    Remember your password? Sign in
-                  </Link>
-                </Grid>
+            </Button>
+            <Grid container justifyContent='flex-end'>
+              <Grid item>
+                <Link href='/auth' variant='body2'>
+                  Remember your password? Sign in
+                </Link>
               </Grid>
-              <Copyright sx={{ mt: 5 }} />
-            </Box>
+            </Grid>
+            <Copyright sx={{ mt: 5 }} />
           </Box>
         </Box>
-      </Box>
+      </AuthWrap>
     </Container>
   );
 }

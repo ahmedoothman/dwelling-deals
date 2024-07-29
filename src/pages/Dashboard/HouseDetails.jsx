@@ -25,7 +25,8 @@ import EmailOutlinedIcon from '@mui/icons-material/EmailOutlined';
 import LocalPhoneOutlinedIcon from '@mui/icons-material/LocalPhoneOutlined';
 import List from '@mui/material/List';
 import ListItem from '@mui/material/ListItem';
-// import {setHouses} from ".../store/houses-slice.js"
+import { GridLoader } from 'react-spinners';
+import { PRIMARY_COLOR_DARK } from '../../constants/styles/colors';
 
 function HouseDetails() {
   const houses = useSelector((state) => state.houses.houses);
@@ -33,16 +34,13 @@ function HouseDetails() {
   const dispatch = useDispatch();
 
   const { id } = useParams();
-  // const house = houses.find(houseObj => houseObj._id === id);'
 
   useEffect(() => {
-    // dispatch(setHouses());
-    setHouse(houses[30]);
-    console.log(houses[30]);
+    setHouse(houses.find((house) => house._id === id));
   }, [houses]);
 
   if (!house) {
-    return <div>Loading...</div>;
+    return <GridLoader size={30} color={PRIMARY_COLOR_DARK} />;
   }
   return (
     <Stack direction={{ xs: 'column', md: 'row' }}>
