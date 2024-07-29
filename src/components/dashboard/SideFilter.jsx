@@ -36,9 +36,7 @@ function SideFilter({ purpose = 'sale', filtersOptions = {} }) {
   return (
     <Box
       sx={{
-        boxShadow: 3,
         width: { xs: '100%', lg: 300 },
-        backgroundColor: '#9cc0cf3f', // Background with opacity for the outer box
         padding: 0,
         paddingTop: 2,
         height: { xs: 'auto', lg: '100%' },
@@ -54,7 +52,8 @@ function SideFilter({ purpose = 'sale', filtersOptions = {} }) {
           position: { xs: 'block', lg: 'fixed' },
           left: { lg: '10px' },
           height: '80%',
-          backgroundColor: 'rgba(255, 255, 255, 0.8)', // Background with opacity for the inner box
+          // backgroundColor: 'rgba(255, 255, 255, 0.8)', // Background with opacity for the inner box
+          backgroundColor: '#9cc0cf3f',
         }}
       >
         <Typography variant='h6' gutterBottom>
