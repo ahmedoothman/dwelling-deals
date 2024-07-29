@@ -5,6 +5,29 @@ const App = lazy(() => import('./App.jsx'));
 const LandingPage = lazy(() => import('./pages/LandingPage.jsx'));
 const DashboardBase = lazy(() => import('./pages/Dashboard/DashboardBase.jsx'));
 const Home = lazy(() => import('./pages/Dashboard/Home.jsx'));
+const SalePage = lazy(() => import('./pages/Dashboard/SalePage.jsx'));
+const RentPage = lazy(() => import('./pages/Dashboard/RentPage.jsx'));
+const HouseDetailsPage = lazy(() =>
+  import('./pages/Dashboard/HouseDetails.jsx')
+);
+const ApproveHousePage = lazy(() =>
+  import('./pages/Dashboard/ApproveHousePage.jsx')
+);
+const WishlistPage = lazy(() => import('./pages/Dashboard/WishlistPage.jsx'));
+const MyHousesBase = lazy(() =>
+  import('./pages/Dashboard/MyHouses/MyHousesBase.jsx')
+);
+const MyHousesPage = lazy(() =>
+  import('./pages/Dashboard/MyHouses/MyHousesPage.jsx')
+);
+const AddHousePage = lazy(() =>
+  import('./pages/Dashboard/MyHouses/AddHouse.jsx')
+);
+
+const UpdateHousePage = lazy(() =>
+  import('./pages/Dashboard/MyHouses/UpdateHouse.jsx')
+);
+
 // auth
 const AuthBase = lazy(() => import('./pages/Auth/AuthBase.jsx'));
 const Login = lazy(() => import('./pages/Auth/LoginPage.jsx'));
@@ -17,16 +40,6 @@ const ResetPasswordPage = lazy(() =>
   import('./pages/Auth/ResetPasswordPage.jsx')
 );
 
-/* 
-const pages = [
-  { title: 'Buy House', path: '/dashboard/buy' },
-  { title: 'Rent House', path: '/dashboard/rent' },
-  { title: 'Sell House', path: '/dashboard/myhouses' },
-  { title: 'About Us', path: '/about-us' },
-  { title: 'Contact Us', path: '/contact-us' },
-];
-
-*/
 // error
 const ErrorPage = lazy(() => import('./pages/ErrorPage.jsx'));
 const routes = [
@@ -56,16 +69,42 @@ const routes = [
             element: <Home />,
           },
           {
-            path: 'buy',
-            element: <Home />,
+            path: 'sale',
+            element: <SalePage />,
           },
           {
             path: 'rent',
-            element: <Home />,
+            element: <RentPage />,
+          },
+          {
+            path: 'wishlist',
+            element: <WishlistPage />,
+          },
+          {
+            path: 'housedetails/:id',
+            element: <HouseDetailsPage />,
           },
           {
             path: 'myhouses',
-            element: <Home />,
+            element: <MyHousesBase />,
+            children: [
+              {
+                index: true,
+                element: <MyHousesPage />,
+              },
+              {
+                path: 'add',
+                element: <AddHousePage />,
+              },
+              {
+                path: 'update/:id',
+                element: <UpdateHousePage />,
+              },
+            ],
+          },
+          {
+            path: 'admin',
+            element: <ApproveHousePage />,
           },
         ],
       },
