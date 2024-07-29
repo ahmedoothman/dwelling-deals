@@ -31,7 +31,6 @@ function DashboardBase() {
     const getHouses = async () => {
       const response = await getAllHousesService();
       if (response.status === 'success') {
-        console.log('fetched');
         dispatch(housesActions.setHouses(response.data));
       }
     };

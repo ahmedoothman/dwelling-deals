@@ -7,6 +7,9 @@ const DashboardBase = lazy(() => import('./pages/Dashboard/DashboardBase.jsx'));
 const Home = lazy(() => import('./pages/Dashboard/Home.jsx'));
 const SalePage = lazy(() => import('./pages/Dashboard/SalePage.jsx'));
 const RentPage = lazy(() => import('./pages/Dashboard/RentPage.jsx'));
+const HouseDetailsPage = lazy(() =>
+  import('./pages/Dashboard/HouseDetails.jsx')
+);
 const ApproveHousePage = lazy(() =>
   import('./pages/Dashboard/ApproveHousePage.jsx')
 );
@@ -76,6 +79,10 @@ const routes = [
           {
             path: 'wishlist',
             element: <WishlistPage />,
+          },
+          {
+            path: 'housedetails/:id',
+            element: <HouseDetailsPage />,
           },
           {
             path: 'myhouses',
