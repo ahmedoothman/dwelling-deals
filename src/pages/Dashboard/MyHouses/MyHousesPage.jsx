@@ -8,6 +8,7 @@ import HouseCard from '../../../components/myhouses/HouseCard';
 import {getMyHousesService,deleteMyHousesService} from '../../../services/houseService'
 import { Link } from 'react-router-dom';
 import AddIcon from '@mui/icons-material/Add';
+import AddHomeWorkRoundedIcon from '@mui/icons-material/AddHomeWorkRounded';
 function MyHouses() {
   
   const [Myhouses,setMyhouses]=useState([]);
@@ -28,7 +29,7 @@ function MyHouses() {
     },[])
   return <Box>
       <Box sx={{display:"flex",justifyContent:"flex-end"}}>
-       <Button variant="contained" sx={{mr:"23px",mt:"20px"}} component={Link} to="add" startIcon={<AddIcon></AddIcon>}>Add House</Button>
+       <Button variant="contained" sx={{mr:"23px",mt:"20px"}} component={Link} to="add" startIcon={<AddHomeWorkRoundedIcon fontSize='large'/>}>Add House</Button>
       </Box>
     <Grid container>
       {Myhouses?.map((item, index) => {
