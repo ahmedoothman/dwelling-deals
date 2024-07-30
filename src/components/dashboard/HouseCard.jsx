@@ -86,16 +86,16 @@ function HouseCard(props) {
             gap={2}
             sx={{ color: grey[700], fontSize: '10pt', marginTop: '15px' }}
           >
-            <Stack direction={'row'} gap={1}>
-              <BedRoundedIcon sx={{ fontSize: '15pt' }} />
+            <Stack direction={'row'}>
+              <BedRoundedIcon sx={{ fontSize: '15pt', mr: '2px' }} />
               <Typography variant='p'>{house.bedrooms} beds</Typography>
             </Stack>
-            <Stack direction={'row'} gap={1}>
-              <BathtubRoundedIcon sx={{ fontSize: '15pt' }} />
+            <Stack direction={'row'}>
+              <BathtubRoundedIcon sx={{ fontSize: '15pt', mr: '2px' }} />
               <Typography variant='p'>{house.bathrooms} Baths</Typography>
             </Stack>
-            <Stack direction={'row'} gap={1}>
-              <AspectRatioRoundedIcon sx={{ fontSize: '15pt' }} />
+            <Stack direction={'row'}>
+              <AspectRatioRoundedIcon sx={{ fontSize: '15pt', mr: '2px' }} />
               <Typography variant='p'>{house.area} SqFt</Typography>
             </Stack>
           </Stack>
