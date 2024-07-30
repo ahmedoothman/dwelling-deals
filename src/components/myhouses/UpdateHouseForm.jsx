@@ -158,7 +158,6 @@ function UpdateHouseForm({ data }) {
               value={newHouse.title}
               onChange={handleChangeInput}
               fullWidth
-              margin='normal'
             />
           </Grid>
           <Grid item xs={12}>
@@ -168,7 +167,6 @@ function UpdateHouseForm({ data }) {
               name='description'
               onChange={handleChangeInput}
               fullWidth
-              margin='normal'
               multiline
               rows={3}
             />
@@ -183,7 +181,6 @@ function UpdateHouseForm({ data }) {
               name='address.street'
               onChange={handleChangeInput}
               fullWidth
-              margin='normal'
             />
           </Grid>
           <Grid item xs={4}>
@@ -193,7 +190,6 @@ function UpdateHouseForm({ data }) {
               name='address.city'
               onChange={handleChangeInput}
               fullWidth
-              margin='normal'
             />
           </Grid>
           <Grid item xs={4}>
@@ -203,7 +199,6 @@ function UpdateHouseForm({ data }) {
               name='address.governorate'
               onChange={handleChangeInput}
               fullWidth
-              margin='normal'
             />
           </Grid>
           <Grid item xs={12}>
@@ -213,7 +208,6 @@ function UpdateHouseForm({ data }) {
               inputProps={{ multiple: true }}
               onChange={handleImageFiles}
               fullWidth
-              margin='normal'
             />
           </Grid>
           <Grid item xs={12}>
@@ -223,7 +217,6 @@ function UpdateHouseForm({ data }) {
               type='file'
               onChange={handleImageUrl}
               fullWidth
-              margin='normal'
             />
           </Grid>
           <Grid item xs={12}>
@@ -233,7 +226,6 @@ function UpdateHouseForm({ data }) {
               name='price'
               onChange={handleChangeInput}
               fullWidth
-              margin='normal'
             />
           </Grid>
           <Grid item xs={12}>
@@ -249,7 +241,6 @@ function UpdateHouseForm({ data }) {
                 }))
               }
               fullWidth
-              margin='normal'
             >
               <MenuItem value='rent'>Rent</MenuItem>
               <MenuItem value='sale'>Sale</MenuItem>
@@ -262,7 +253,6 @@ function UpdateHouseForm({ data }) {
               value={newHouse.rate}
               onChange={handleChangeInput}
               fullWidth
-              margin='normal'
             />
           </Grid>
           <Grid item xs={6}>
@@ -272,7 +262,6 @@ function UpdateHouseForm({ data }) {
               value={newHouse.bedrooms}
               onChange={handleChangeInput}
               fullWidth
-              margin='normal'
             />
           </Grid>
           <Grid item xs={6}>
@@ -282,7 +271,6 @@ function UpdateHouseForm({ data }) {
               value={newHouse.bathrooms}
               onChange={handleChangeInput}
               fullWidth
-              margin='normal'
             />
           </Grid>
           <Grid item xs={12}>
@@ -292,7 +280,6 @@ function UpdateHouseForm({ data }) {
               value={newHouse.area}
               onChange={handleChangeInput}
               fullWidth
-              margin='normal'
             />
           </Grid>
           <Grid item xs={12}>
