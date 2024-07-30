@@ -39,6 +39,7 @@ const useFilteredHouses = (houseType) => {
       if (filters.area) {
         isValid = isValid && house.area <= Number(filters.area);
       }
+      isValid = isValid && house.approved === true;
       return isValid;
     });
 

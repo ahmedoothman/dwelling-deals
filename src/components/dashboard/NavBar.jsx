@@ -21,8 +21,6 @@ function NavBar() {
     { title: 'Buy House', path: '/dashboard/sale' },
     { title: 'Rent House', path: '/dashboard/rent' },
     { title: 'Wishlist', path: '/dashboard/wishlist' },
-    { title: 'My Houses', path: '/dashboard/myhouses' },
-    { title: 'Admin', path: '/dashboard/admin' },
   ]);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -53,12 +51,18 @@ function NavBar() {
   };
 
   useEffect(() => {
-    // if (user?.role !== 'user') {
-    //   setPages((prevPages) => [
-    //     ...prevPages,
-    //     { title: 'Sell House', path: '/dashboard/myhouses' },
-    //   ]);
-    // }
+    if (user?.role !== 'user') {
+      setPages((prevPages) => [
+        ...prevPages,
+        { title: 'My Houses', path: '/dashboard/myhouses' },
+      ]);
+    }
+    if (user?.role === 'admin') {
+      setPages((prevPages) => [
+        ...prevPages,
+        { title: 'Admin', path: '/dashboard/admin' },
+      ]);
+    }
   }, [user]);
 
   return (

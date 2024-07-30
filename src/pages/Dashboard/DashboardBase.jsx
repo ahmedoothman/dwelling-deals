@@ -4,6 +4,7 @@ import { Outlet } from 'react-router-dom';
 import { useNavigate } from 'react-router-dom';
 import { getMeService } from '../../services/userService';
 import { getAllHousesService } from '../../services/houseService';
+import { getMyWishListService } from '../../services/wishlistService';
 import { useDispatch } from 'react-redux';
 import { authActions } from '../../store/auth-slice';
 import { housesActions } from '../../store/houses-slice';
@@ -35,6 +36,12 @@ function DashboardBase() {
       }
     };
     getHouses();
+    //get Wishlist
+    const fetchWishlist = async () => {
+      const result = await getMyWishListService();
+      dispatch(housesActions.setWishlist(result.data.houses));
+    };
+    fetchWishlist();
   }, []);
   return (
     <div>

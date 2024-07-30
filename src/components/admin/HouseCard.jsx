@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import {
   Box,
   Button,
@@ -12,43 +12,16 @@ import {
   Typography,
 } from '@mui/material';
 import { blue, grey } from '@mui/material/colors';
-import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
-import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import BedRoundedIcon from '@mui/icons-material/BedRounded';
 import BathtubRoundedIcon from '@mui/icons-material/BathtubRounded';
 import AspectRatioRoundedIcon from '@mui/icons-material/AspectRatioRounded';
 import { Link } from 'react-router-dom';
 import { PRIMARY_COLOR_DARK } from '../../constants/styles/colors';
 import { GridLoader } from 'react-spinners';
-import { useSelector, useDispatch } from 'react-redux';
-import { housesActions } from '../../store/houses-slice';
 
-import {
-  removeFromMyWishListService,
-  addToMyWishListService,
-} from '../../services/wishlistService';
 function HouseCard(props) {
-  const dispatch = useDispatch();
-  const { wishlist } = useSelector((state) => state.houses);
-  const [isWishlisted, setIsWishlisted] = useState(false);
   const house = props.data;
-
-  useEffect(() => {
-    if (house && wishlist) {
-      const wishlisted = wishlist.some((item) => item._id === house._id);
-      setIsWishlisted(wishlisted);
-    }
-  }, [wishlist, house]);
-
-  const handleIcon = async () => {
-    if (isWishlisted) {
-      dispatch(housesActions.removeFromWishlist(house._id));
-      const response = await removeFromMyWishListService(house._id);
-    } else {
-      dispatch(housesActions.addToWishlist(house));
-      const response = await addToMyWishListService({ houseId: house._id });
-    }
-  };
+  const approveHouse = props.approveHouse;
   if (!house) {
     return <GridLoader size={30} color={PRIMARY_COLOR_DARK} />;
   }
@@ -93,13 +66,6 @@ function HouseCard(props) {
                 </b>
               )}
             </Typography>
-            <IconButton onClick={handleIcon}>
-              {isWishlisted ? (
-                <FavoriteRoundedIcon color='error' />
-              ) : (
-                <FavoriteBorderRoundedIcon />
-              )}
-            </IconButton>
           </Stack>
           <Typography variant='p'>{house.title}</Typography>
           <Stack
@@ -127,6 +93,16 @@ function HouseCard(props) {
             justifyContent: 'flex-end',
           }}
         >
+          <Button
+            variant='contained'
+            color='primary'
+            sx={{ borderRadius: '15px' }}
+            onClick={() => {
+              approveHouse(house._id);
+            }}
+          >
+            Approve House
+          </Button>
           <Button
             variant='contained'
             color='primary'

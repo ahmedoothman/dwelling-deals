@@ -4,7 +4,6 @@ import { House } from '@mui/icons-material';
 function AddHouse() {
   return (
     <div>
-      add house
       <HouseForm />
     </div>
   );

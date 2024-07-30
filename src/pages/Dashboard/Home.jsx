@@ -29,16 +29,6 @@ function Home() {
     },
     [dispatch]
   );
-  // console.log(houses);
-  // useEffect( async() => {
-  //   const GetTopRent= await getTopRatedRentHousesService();
-  //    const GetTopSell=await getTopRatedSellHousesService();
-  //    dispatch( housesActions.setTopRatedRentals(GetTopRent.data))
-  //    dispatch(housesActions.setTopRatedBuys(GetTopSell.data))
-
-  //   // fetch data for top premium for rent
-  //   // fetch data for top premium for
-  // }, [dispatch]);
 
   return (
     <div>

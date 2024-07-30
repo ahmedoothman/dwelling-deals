@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { act } from 'react';
 
 const initialState = {
   houses: [],
@@ -14,6 +15,23 @@ const housesSlice = createSlice({
   reducers: {
     setHouses(state, action) {
       state.houses = action.payload;
+    },
+    addHouse(state, action) {
+      state.houses.push(action.payload);
+    },
+    updateHouse(state, action) {
+      const updatedHouse = action.payload;
+      const existingHouse = state.houses.find(
+        (house) => house._id === updatedHouse._id
+      );
+      if (existingHouse) {
+        Object.assign(existingHouse, updatedHouse);
+      }
+    },
+    deleteHouse(state, action) {
+      state.houses = state.houses.filter(
+        (house) => house._id !== action.payload
+      );
     },
     setWishlist(state, action) {
       state.wishlist = action.payload;
@@ -32,8 +50,6 @@ const housesSlice = createSlice({
     setTopRatedBuys(state, action) {
       state.topRatedBuys = action.payload;
     },
-    
-
   },
 });
 

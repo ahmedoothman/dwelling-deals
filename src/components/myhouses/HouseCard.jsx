@@ -12,15 +12,12 @@ import {
   Typography,
 } from '@mui/material';
 import { blue, grey } from '@mui/material/colors';
-import FavoriteBorderRoundedIcon from '@mui/icons-material/FavoriteBorderRounded';
-import FavoriteRoundedIcon from '@mui/icons-material/FavoriteRounded';
 import BedRoundedIcon from '@mui/icons-material/BedRounded';
 import BathtubRoundedIcon from '@mui/icons-material/BathtubRounded';
 import AspectRatioRoundedIcon from '@mui/icons-material/AspectRatioRounded';
 import { Link } from 'react-router-dom';
 import { PRIMARY_COLOR_DARK } from '../../constants/styles/colors';
 import { GridLoader } from 'react-spinners';
-import{deleteMyHousesService} from"../../services/houseService"
 
 function HouseCard(props) {
   const house = props.data;
@@ -39,7 +36,7 @@ function HouseCard(props) {
       <Card
         sx={{
           width: '100%',
-          margin: { xs: '10px 0', md: '10px' },
+          margin: { xs: '10px 0', md: '0px' },
           '&:hover': {
             boxShadow: `5px 5px 24px ${grey[300]}`,
             cursor: 'pointer',
@@ -75,7 +72,6 @@ function HouseCard(props) {
                 </b>
               )}
             </Typography>
-           
           </Stack>
           <Typography variant='p'>{house.title}</Typography>
           <Typography variant='p'>Type : {house.type}</Typography>
@@ -105,25 +101,26 @@ function HouseCard(props) {
             // justifyContent: 'flex-end',
           }}
         >
-             <Button
-              variant='text'
-              color='error'
-              sx={{ borderRadius: '15px' }}
-              onClick={()=>{props.handleDelete(house._id)}}
+          <Button
+            variant='text'
+            color='error'
+            sx={{ borderRadius: '15px' }}
+            onClick={() => {
+              props.handleDelete(house._id);
+            }}
           >
-             Delete
+            Delete
           </Button>
-            <Button
+          <Button
             variant='text'
             color='info'
-          
             sx={{ borderRadius: '15px' }}
             component={Link}
             to={`update/${house._id}`}
           >
             Edit
           </Button>
-         
+
           <Button
             variant='text'
             color='info'
@@ -134,8 +131,6 @@ function HouseCard(props) {
           >
             More info
           </Button>
-         
-
         </CardActions>
       </Card>
     </>

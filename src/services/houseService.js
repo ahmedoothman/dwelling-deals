@@ -24,7 +24,27 @@ export const getAllHousesService = async () => {
     }
   }
 };
-// get top 4 rated house forn rent form the same api above use query params , type=rent, rete>3 and limit=4
+//get all pending houses
+export const getPendingHouses = async () => {
+  try {
+    const response = await axios.get(`${API_URL}/api/houses?approved=false`);
+    return { status: 'success', data: response.data.data };
+  } catch (error) {
+    if (error.code === 'ERR_NETWORK') {
+      return {
+        status: 'error',
+        statusCode: error.code,
+        message: error.message + ' Please check your internet connection',
+      };
+    } else {
+      return {
+        status: 'error',
+        statusCode: error.response.statusCode,
+        message: error.response.data.message,
+      };
+    }
+  }
+};
 
 export const getTopRatedRentHousesService = async () => {
   try {
@@ -128,7 +148,7 @@ export const postMyHousesService = async (data) => {
 };
 
 // patch my houses
-export const patchMyHousesService = async (data, id) => {
+export const patchMyHousesService = async (id, data) => {
   try {
     const response = await axios.patch(
       `${API_URL}/api/houses/myhouses/${id}`,

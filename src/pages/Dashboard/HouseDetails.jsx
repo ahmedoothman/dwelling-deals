@@ -30,7 +30,7 @@ import { PRIMARY_COLOR_DARK } from '../../constants/styles/colors';
 
 function HouseDetails() {
   const houses = useSelector((state) => state.houses.houses);
-  // console.log(houses);
+
   const [house, setHouse] = useState(null);
   const dispatch = useDispatch();
 
@@ -181,13 +181,7 @@ function HouseDetails() {
             About
           </Typography>
           <Typography variant='p' color={'gray'}>
-            {house.description}Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Reiciendis voluptatibus minus, ducimus culpa
-            officiis, minima illo maxime officia et suscipit, tenetur nihil
-            dolores consequatur dolore quos! Eveniet natus totam enim.Lorem
-            ipsum dolor sit amet consectetur adipisicing elit. Reiciendis
-            voluptatibus minus, ducimus culpa officiis, minima illo maxime
-            officia et suscipit
+            {house.description}
           </Typography>
         </Box>
 

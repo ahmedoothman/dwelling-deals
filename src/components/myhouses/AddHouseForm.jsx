@@ -1,46 +1,51 @@
-import { TextField, Box, Paper, Typography, Button, Grid } from "@mui/material";
-import React from "react";
-import { useState } from "react";
-import { postMyHousesService } from "../../services/houseService";
-import { useNavigate } from "react-router-dom";
+import React, { useState } from 'react';
+import {
+  TextField,
+  Box,
+  Paper,
+  Typography,
+  Button,
+  Grid,
+  Select,
+  MenuItem,
+  CircularProgress,
+} from '@mui/material';
+import { postMyHousesService } from '../../services/houseService';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { housesActions } from '../../store/houses-slice';
 
 function AddHouseForm() {
+  const user = useSelector((state) => state.auth.user);
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
   const [newHouse, setNewHouse] = useState({
     address: {
-      street: " ",
-      city: " ",
-      governorate: "",
+      street: '',
+      city: '',
+      governorate: '',
     },
-    images: ["", "", ""],
-    title: "",
-    description: "",
-    price: "",
-    type: "",
-    imageUrl: "",
-    rate: "",
-    bedrooms: "",
-    bathrooms: "",
-    area: "",
+    images: [],
+    title: '',
+    description: '',
+    price: '',
+    imageUrl: '',
+    rate: '',
+    bedrooms: '',
+    bathrooms: '',
+    area: '',
   });
+  const [type, setType] = useState('rent');
+  const [loading, setLoading] = useState(false);
 
-  const navigate = useNavigate();
-
-  function handleChangeInput(e) {
-    const propertyName = e.target.name.split(".")[1];
-
-    {
-      /*Top Level State*/
-    }
-    if (e.target.name.split(".").length === 1) {
+  const handleChangeInput = (e) => {
+    const propertyName = e.target.name.split('.')[1];
+    if (e.target.name.split('.').length === 1) {
       setNewHouse((prevState) => ({
         ...prevState,
         [e.target.name]: e.target.value,
       }));
     } else {
-      {
-        /*Nested state Address*/
-      }
-      // console.log("Nested")
       setNewHouse((prevState) => ({
         ...prevState,
         address: {
@@ -49,281 +54,235 @@ function AddHouseForm() {
         },
       }));
     }
+  };
 
-    // console.log("nameeeee",propertyName , "Valueee", e.target.value)
-    // console.log("nameeeee", e.target.name, "Valueee", e.target.value);
-  }
+  const handleImageFiles = (e) => {
+    const files = Array.from(e.target.files);
+    setNewHouse((prevState) => ({
+      ...prevState,
+      images: files,
+    }));
+  };
 
-  /*Handle State of image*/
-  function handleImageFile(e, index) {
-    setNewHouse((prevState) => {
-      const newImages = [...prevState.images];
-      newImages[index] = e.target.files[0];
-      return { ...prevState, images: newImages };
-    });
+  const handleImageUrl = (e) => {
+    setNewHouse((prevState) => ({
+      ...prevState,
+      imageUrl: e.target.files[0],
+    }));
+  };
 
-    console.log(e.target.name, e.target.value);
-  }
-
-  function handleImageUrl(e) {
-    setNewHouse((prevState) => ({ ...prevState, imageUrl: e.target.files[0] }));
-    console.log(e.target.name, e.target.value);
-  }
-
-  const  handleSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    formData.append("address.street", newHouse.address.street);
-    formData.append("address.city", newHouse.address.city);
-    formData.append("address.governorate", newHouse.address.governorate);
-    formData.append("title", newHouse.title);
-    formData.append("description", newHouse.description);
-    formData.append("imageUrl", newHouse.imageUrl);
-    formData.append("price", newHouse.price);
-    formData.append("type", newHouse.type);
-    formData.append("rate", newHouse.rate);
-    formData.append("bedrooms", newHouse.bedrooms);
-    formData.append("bathrooms", newHouse.bathrooms);
-    formData.append("area", newHouse.area);
+    setLoading(true);
+    try {
+      const formData = new FormData();
+      formData.append('address[street]', newHouse.address.street);
+      formData.append('address[city]', newHouse.address.city);
+      formData.append('address[governorate]', newHouse.address.governorate);
+      formData.append('title', newHouse.title);
+      formData.append('description', newHouse.description);
+      formData.append('imageUrl', newHouse.imageUrl);
+      formData.append('price', newHouse.price);
+      formData.append('type', type);
+      formData.append('rate', newHouse.rate);
+      formData.append('bedrooms', newHouse.bedrooms);
+      formData.append('bathrooms', newHouse.bathrooms);
+      formData.append('area', newHouse.area);
 
-    newHouse.images.forEach((image, index) => {
-      formData.append("images", image);
-    });
-
-    await postMyHousesService(formData)
-    .then(() => {
-      setNewHouse({
-        address: {
-          street: "",
-          city: "",
-          governorate: "",
-        },
-        images: ["", "", ""],
-        title: "",
-        description: "",
-        price: "",
-        type: "",
-        imageUrl: "",
-        rate: "",
-        bedrooms: "",
-        bathrooms: "",
-        area: "",
+      newHouse.images.forEach((image) => {
+        formData.append('images', image);
       });
-      console.log("form submmited sucseefly");
-      navigate("/dashboard/myhouses");
-    })
-    .catch(error => {
-      console.error("Error submitting form:", error);
-    });
-  }
+
+      const response = await postMyHousesService(formData);
+      const tempData = { ...response.data, realtor: user };
+      dispatch(housesActions.addHouse(tempData));
+      navigate('/dashboard/myhouses');
+    } catch (error) {
+      console.error('Error submitting form:', error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
-    <>
-      {/* <div>AddHouseForm</div> */}
-
-      <Paper elevation={3} sx={{ margin: "auto", p: 4, width: "45%" }}>
-        <Typography variant="h4" gutterBottom textAlign={"center"}>
-          Add New House
-        </Typography>
-        <form style={{ margin: "auto" }} onSubmit={handleSubmit}>
-          <Grid container spacing={2}>
-            {/*title*/}
-            <Grid item xs={12}>
-              <TextField
-                label="Title"
-                name="title"
-                value={newHouse.title}
-                onChange={handleChangeInput}
-                fullWidth
-                margin="normal"
-                required
-              />
-            </Grid>
-
-            {/*Description*/}
-            <Grid item xs={12}>
-              <TextField
-                label="Description"
-                value={newHouse.description}
-                name="description"
-                onChange={handleChangeInput}
-                fullWidth
-                margin="normal"
-                required
-                multiline
-                rows={3}
-              />
-            </Grid>
-
-            {/*Address*/}
-            <Grid item xs={12}>
-              <Typography variant="h6">Address</Typography>
-            </Grid>
-
-            <Grid item xs={4}>
-              <TextField
-                label="Street"
-                value={newHouse.address.street}
-                name="address.street"
-                onChange={handleChangeInput}
-                fullWidth
-                margin="normal"
-                required
-              />
-            </Grid>
-
-            <Grid item xs={4}>
-              <TextField
-                label="City"
-                value={newHouse.address.city}
-                name="address.city"
-                onChange={handleChangeInput}
-                fullWidth
-                margin="normal"
-                required
-              />
-            </Grid>
-
-            <Grid item xs={4}>
-              <TextField
-                label="Governorate"
-                value={newHouse.address.governorate}
-                name="address.governorate"
-                onChange={handleChangeInput}
-                fullWidth
-                margin="normal"
-                required
-              />
-            </Grid>
-
-            {/*Images*/}
-            <Grid item xs={12}>
-              <Typography variant="h6">Images</Typography>
-            </Grid>
-            {newHouse.images.map((image, index) => (
-              <Grid item xs={4} key={index}>
-                <TextField
-                  type="file"
-                  //   label={`Image${index + 1}`}
-                  //   value={image}
-                  name="image"
-                  onChange={(e) => handleImageFile(e, index)}
-                  fullWidth
-                  margin="normal"
-                  required
-                />
-              </Grid>
-            ))}
-
-            {/*Price*/}
-            <Grid item xs={12}>
-              <TextField
-                label="Price"
-                value={newHouse.price}
-                name="price"
-                onChange={handleChangeInput}
-                fullWidth
-                margin="normal"
-                required
-              />
-            </Grid>
-
-            {/*Type*/}
-            <Grid item xs={12}>
-              <TextField
-                label="Type"
-                value={newHouse.type}
-                name="type"
-                onChange={handleChangeInput}
-                fullWidth
-                margin="normal"
-                required
-              />
-            </Grid>
-
-            {/*ImageUrl*/}
-            <Grid item xs={12}>
-              <TextField
-                // label="ImageUrl"
-                name="imageUrl"
-                // value={newHouse.imageUrl}
-                type="file"
-                onChange={handleImageUrl}
-                fullWidth
-                margin="normal"
-                required
-              />
-            </Grid>
-
-            {/*Rate*/}
-            <Grid item xs={12}>
-              <TextField
-                label="Rate"
-                name="rate"
-                value={newHouse.rate}
-                onChange={handleChangeInput}
-                fullWidth
-                margin="normal"
-                required
-              />
-            </Grid>
-
-            {/*Bedrooms*/}
-            <Grid item xs={6}>
-              <TextField
-                label="Bedrooms"
-                name="bedrooms"
-                value={newHouse.bedrooms}
-                onChange={handleChangeInput}
-                fullWidth
-                margin="normal"
-                required
-              />
-            </Grid>
-
-            {/*Bathrooms*/}
-            <Grid item xs={6}>
-              <TextField
-                label="Bathrooms"
-                name="bathrooms"
-                value={newHouse.bathrooms}
-                onChange={handleChangeInput}
-                fullWidth
-                margin="normal"
-                required
-              />
-            </Grid>
-
-            {/*Area*/}
-            <Grid item xs={12}>
-              <TextField
-                label="Area"
-                name="area"
-                value={newHouse.area}
-                onChange={handleChangeInput}
-                fullWidth
-                margin="normal"
-                required
-              />
-            </Grid>
-
-            <Grid item xs={12}>
-              <Button
-                type="submit"
-                variant="contained"
-                color="primary"
-                fullWidth
-                sx={{ marginTop: 2 }}
-              >
-                Submit
-              </Button>
-            </Grid>
+    <Paper
+      elevation={3}
+      sx={{ margin: 'auto', marginTop: '30px', p: 4, width: '45%' }}
+    >
+      <Typography variant='h4' gutterBottom textAlign={'center'}>
+        Add New House
+      </Typography>
+      <form style={{ margin: 'auto' }} onSubmit={handleSubmit}>
+        <Grid container spacing={2}>
+          <Grid item xs={12}>
+            <TextField
+              label='Title'
+              name='title'
+              value={newHouse.title}
+              onChange={handleChangeInput}
+              fullWidth
+              required
+            />
           </Grid>
-        </form>
-      </Paper>
-    </>
+
+          <Grid item xs={12}>
+            <TextField
+              label='Description'
+              value={newHouse.description}
+              name='description'
+              onChange={handleChangeInput}
+              fullWidth
+              required
+              multiline
+              rows={3}
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography variant='h6'>Address</Typography>
+          </Grid>
+
+          <Grid item xs={4}>
+            <TextField
+              label='Street'
+              value={newHouse.address.street}
+              name='address.street'
+              onChange={handleChangeInput}
+              fullWidth
+              required
+            />
+          </Grid>
+
+          <Grid item xs={4}>
+            <TextField
+              label='City'
+              value={newHouse.address.city}
+              name='address.city'
+              onChange={handleChangeInput}
+              fullWidth
+              required
+            />
+          </Grid>
+
+          <Grid item xs={4}>
+            <TextField
+              label='Governorate'
+              value={newHouse.address.governorate}
+              name='address.governorate'
+              onChange={handleChangeInput}
+              fullWidth
+              required
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography>Images</Typography>
+            <TextField
+              type='file'
+              inputProps={{ multiple: true }}
+              onChange={handleImageFiles}
+              fullWidth
+              required
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography>Main Image</Typography>
+            <TextField
+              name='imageUrl'
+              type='file'
+              onChange={handleImageUrl}
+              fullWidth
+              required
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <TextField
+              label='Price'
+              value={newHouse.price}
+              name='price'
+              onChange={handleChangeInput}
+              fullWidth
+              required
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <Typography>Type</Typography>
+            <Select
+              label='Type'
+              value={type}
+              name='type'
+              onChange={(e) => setType(e.target.value)}
+              fullWidth
+              required
+            >
+              <MenuItem value='rent'>Rent</MenuItem>
+              <MenuItem value='sale'>Sale</MenuItem>
+            </Select>
+          </Grid>
+
+          <Grid item xs={12}>
+            <TextField
+              label='Rate'
+              name='rate'
+              value={newHouse.rate}
+              onChange={handleChangeInput}
+              fullWidth
+              required
+            />
+          </Grid>
+
+          <Grid item xs={6}>
+            <TextField
+              label='Bedrooms'
+              name='bedrooms'
+              value={newHouse.bedrooms}
+              onChange={handleChangeInput}
+              fullWidth
+              required
+            />
+          </Grid>
+
+          <Grid item xs={6}>
+            <TextField
+              label='Bathrooms'
+              name='bathrooms'
+              value={newHouse.bathrooms}
+              onChange={handleChangeInput}
+              fullWidth
+              required
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <TextField
+              label='Area'
+              name='area'
+              value={newHouse.area}
+              onChange={handleChangeInput}
+              fullWidth
+              required
+            />
+          </Grid>
+
+          <Grid item xs={12}>
+            <Button
+              type='submit'
+              variant='contained'
+              color='primary'
+              fullWidth
+              sx={{ marginTop: 2 }}
+              disabled={loading}
+            >
+              {loading ? <CircularProgress size={24} /> : 'Submit'}
+            </Button>
+          </Grid>
+        </Grid>
+      </form>
+    </Paper>
   );
 }
 
 export default AddHouseForm;
-
