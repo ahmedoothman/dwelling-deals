@@ -20,14 +20,17 @@ import AspectRatioRoundedIcon from '@mui/icons-material/AspectRatioRounded';
 import { Link } from 'react-router-dom';
 import { PRIMARY_COLOR_DARK } from '../../constants/styles/colors';
 import { GridLoader } from 'react-spinners';
+import{deleteMyHousesService} from"../../services/houseService"
 
 function HouseCard(props) {
   const house = props.data;
-  const [like, setlike] = useState(false);
-  const handleIcon = () => {
-    setlike(!like);
-  };
-
+  // const [like, setlike] = useState(false);
+  // const handleIcon = () => {
+  //   setlike(!like);
+  // };
+  // const handleDelete=function(id){
+  //     deleteMyHousesService(id);
+  // }
   if (!house) {
     return <GridLoader size={30} color={PRIMARY_COLOR_DARK} />;
   }
@@ -72,15 +75,11 @@ function HouseCard(props) {
                 </b>
               )}
             </Typography>
-            <IconButton onClick={handleIcon}>
-              {like ? (
-                <FavoriteRoundedIcon color='error' />
-              ) : (
-                <FavoriteBorderRoundedIcon />
-              )}
-            </IconButton>
+           
           </Stack>
           <Typography variant='p'>{house.title}</Typography>
+          <Typography variant='p'>Type : {house.type}</Typography>
+
           <Stack
             direction={'row'}
             gap={2}
@@ -103,18 +102,40 @@ function HouseCard(props) {
         <CardActions
           sx={{
             display: 'flex',
-            justifyContent: 'flex-end',
+            // justifyContent: 'flex-end',
           }}
         >
-          <Button
-            variant='contained'
+             <Button
+              variant='text'
+              color='error'
+              sx={{ borderRadius: '15px' }}
+              onClick={()=>{props.handleDelete(house._id)}}
+          >
+             Delete
+          </Button>
+            <Button
+            variant='text'
             color='info'
+          
+            sx={{ borderRadius: '15px' }}
+            component={Link}
+            to={`update/${house._id}`}
+          >
+            Edit
+          </Button>
+         
+          <Button
+            variant='text'
+            color='info'
+            // size='small'
             sx={{ borderRadius: '15px' }}
             component={Link}
             to={`/dashboard/housedetails/${house._id}`}
           >
             More info
           </Button>
+         
+
         </CardActions>
       </Card>
     </>

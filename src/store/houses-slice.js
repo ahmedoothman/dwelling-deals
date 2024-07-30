@@ -32,6 +32,8 @@ const housesSlice = createSlice({
     setTopRatedBuys(state, action) {
       state.topRatedBuys = action.payload;
     },
+    
+
   },
 });
 

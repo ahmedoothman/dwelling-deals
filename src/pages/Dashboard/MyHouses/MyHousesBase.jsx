@@ -3,7 +3,7 @@ import { Outlet } from 'react-router-dom';
 function MyHousesBase() {
   return (
     <div>
-      MyHousesBase
+      {/* MyHousesBase */}
       <Outlet />
     </div>
   );
