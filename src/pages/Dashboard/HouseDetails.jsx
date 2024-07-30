@@ -30,6 +30,7 @@ import { PRIMARY_COLOR_DARK } from '../../constants/styles/colors';
 
 function HouseDetails() {
   const houses = useSelector((state) => state.houses.houses);
+  // console.log(houses);
   const [house, setHouse] = useState(null);
   const dispatch = useDispatch();
 
