@@ -108,7 +108,7 @@ function HouseCard(props) {
         >
           <Button
             variant='contained'
-            color='info'
+            color='primary'
             sx={{ borderRadius: '15px' }}
             component={Link}
             to={`/dashboard/housedetails/${house._id}`}
