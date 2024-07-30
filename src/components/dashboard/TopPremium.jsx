@@ -17,7 +17,6 @@ function TopPremium({ title, data }) {
               item
               xs={12}
               md={4}
-              lg={3}
               key={index}
               sx={{
                 padding: '10px',
