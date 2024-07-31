@@ -6,7 +6,6 @@ function PasswordSettings() {
   /* 
   response={
     status: "success",
-    message: "Password updated successfully"
   }
     or error
     response={

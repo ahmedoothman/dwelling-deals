@@ -168,7 +168,7 @@ export const changePasswordService = async (
         data,
       }
     );
-    return { status: 'success', message: response.data.message };
+    return { status: 'success', data: response.data };
   } catch (error) {
     if (error.code === 'ERR_NETWORK') {
       return {
