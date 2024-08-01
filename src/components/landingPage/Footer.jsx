@@ -4,7 +4,7 @@ import { grey } from '@mui/material/colors';
 
 const liststyle = {
   listStyleType: 'none',
-  fontSize: 8,
+  fontSize: 10,
   color: `${grey[700]}`,
   padding: '10px',
   margin: '5px',
@@ -97,7 +97,7 @@ const Footer = () => {
               fontSize: { xs: 10, md: 12 },
             }}
           >
-            <Typography color={grey[700]}>&copy; 2024 DwellingDeals</Typography>
+            <Typography color={grey[700]} fontSize={'9pt'}>&copy; 2024 DwellingDeals</Typography>
             <Box
               sx={{
                 display: 'flex',
@@ -107,11 +107,12 @@ const Footer = () => {
             >
               <Typography
                 color={grey[700]}
+                fontSize={'9pt'}
                 sx={{ mr: { xs: 2, md: 4 }, cursor: 'pointer' }}
               >
                 Terms & Agreements
               </Typography>
-              <Typography color={grey[700]} sx={{ cursor: 'pointer' }}>
+              <Typography color={grey[700]} sx={{ cursor: 'pointer' }} fontSize={'9pt'}>
                 Privacy Policy
               </Typography>
             </Box>

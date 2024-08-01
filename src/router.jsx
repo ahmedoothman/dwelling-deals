@@ -1,6 +1,8 @@
 // router
 import { lazy } from 'react';
 import { createBrowserRouter } from 'react-router-dom';
+import AboutUs from './pages/AboutUs.jsx';
+import ContactUs from './pages/ContactUs.jsx';
 const App = lazy(() => import('./App.jsx'));
 const LandingPage = lazy(() => import('./pages/LandingPage.jsx'));
 const DashboardBase = lazy(() => import('./pages/Dashboard/DashboardBase.jsx'));
@@ -54,11 +56,11 @@ const routes = [
       },
       {
         path: 'about-us',
-        element: <LandingPage />,
+        element: <AboutUs />,
       },
       {
         path: 'contact-us',
-        element: <LandingPage />,
+        element: <ContactUs/> ,
       },
       {
         path: '/dashboard',
