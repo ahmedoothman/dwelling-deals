@@ -6,7 +6,13 @@ function Settings() {
   return (
     <Box>
       <InfoSettings></InfoSettings>
-      <Divider></Divider>
+      <Divider
+        sx={{
+          color: 'primary.main',
+          width: '50%',
+          margin: '30px auto',
+        }}
+      ></Divider>
       <PasswordSettings></PasswordSettings>
     </Box>
   );
