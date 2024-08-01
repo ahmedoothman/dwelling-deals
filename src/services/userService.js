@@ -161,16 +161,17 @@ export const changePasswordService = async (
   try {
     const response = await axios.patch(
       `${API_URL}/api/users/updateMyPassword`,
+      data,
       {
         headers: {
           Authorization: `Bearer ${Cookies.get('token')}`,
         },
-        data,
       }
     );
     return { status: 'success', data: response.data };
   } catch (error) {
     if (error.code === 'ERR_NETWORK') {
+      console.log(error);
       return {
         status: 'error',
         statusCode: error.code,
@@ -189,6 +190,12 @@ export const changePasswordService = async (
 // update me
 
 export const updateMeService = async (name, email, phoneNumber) => {
+  const data = {
+    name,
+    email,
+    phoneNumber,
+  };
+
   try {
     const response = await axios.patch(`${API_URL}/api/users/updateMe`, data, {
       headers: {
