@@ -121,7 +121,11 @@ function PasswordSettings() {
         autoHideDuration={6000}
         onClose={handleCloseSnackbar}
       >
-        <Alert onClose={handleCloseSnackbar} severity={snackbarSeverity}>
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={snackbarSeverity}
+          variant='filled'
+        >
           {snackbarMessage}
         </Alert>
       </Snackbar>

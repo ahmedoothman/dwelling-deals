@@ -14,7 +14,6 @@ function PageHeader({ title, numberOfResults, styles }) {
         padding: '0 10px',
         paddingTop: '10px',
         borderRadius: '5px',
-        marginLeft: { md: '15px' },
         ...styles,
       }}
     >

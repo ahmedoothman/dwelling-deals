@@ -9,6 +9,8 @@ import {
   Select,
   MenuItem,
   CircularProgress,
+  Snackbar,
+  Alert,
 } from '@mui/material';
 import { postMyHousesService } from '../../services/houseService';
 import { useNavigate } from 'react-router-dom';
@@ -19,6 +21,7 @@ function AddHouseForm() {
   const user = useSelector((state) => state.auth.user);
   const dispatch = useDispatch();
   const navigate = useNavigate();
+
   const [newHouse, setNewHouse] = useState({
     address: {
       street: '',
@@ -35,8 +38,14 @@ function AddHouseForm() {
     bathrooms: '',
     area: '',
   });
+
   const [type, setType] = useState('rent');
   const [loading, setLoading] = useState(false);
+
+  // Snackbar state
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
 
   const handleChangeInput = (e) => {
     const propertyName = e.target.name.split('.')[1];
@@ -96,12 +105,27 @@ function AddHouseForm() {
       const response = await postMyHousesService(formData);
       const tempData = { ...response.data, realtor: user };
       dispatch(housesActions.addHouse(tempData));
-      navigate('/dashboard/myhouses');
+
+      setSnackbarMessage('House added successfully!');
+      setSnackbarSeverity('success');
+      setSnackbarOpen(true);
+
+      // Wait 3 seconds before navigating
+      setTimeout(() => {
+        navigate('/dashboard/myhouses');
+      }, 3000);
     } catch (error) {
+      setSnackbarMessage('Error adding house. Please try again.');
+      setSnackbarSeverity('error');
+      setSnackbarOpen(true);
       console.error('Error submitting form:', error);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
   };
 
   return (
@@ -281,6 +305,19 @@ function AddHouseForm() {
           </Grid>
         </Grid>
       </form>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={snackbarSeverity}
+          variant='filled'
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Paper>
   );
 }

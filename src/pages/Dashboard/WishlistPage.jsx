@@ -23,9 +23,16 @@ function Wishlist() {
       />
       {/* houses grid */}
       {wishlist.length > 0 && (
-        <Grid container spacing={3}>
+        <Grid container spacing={3} justifyContent={'center'}>
           {wishlist.map((house) => (
-            <Grid item xs={12} sm={6} md={4} key={house._id}>
+            <Grid
+              item
+              xs={12}
+              sm={6}
+              md={4}
+              key={house._id}
+              justifyContent={'center'}
+            >
               <HouseCard data={house} />
             </Grid>
           ))}
