@@ -109,7 +109,7 @@ function UpdateHouseForm({ data }) {
     formData.append('description', newHouse.description);
     formData.append('price', newHouse.price);
     formData.append('type', newHouse.type);
-    formData.append('rate', newHouse.rate);
+    formData.append('rate', '3');
     formData.append('bedrooms', newHouse.bedrooms);
     formData.append('bathrooms', newHouse.bathrooms);
     formData.append('area', newHouse.area);
@@ -148,7 +148,10 @@ function UpdateHouseForm({ data }) {
   };
 
   return (
-    <Paper elevation={3} sx={{ margin: 'auto', p: 4, width: '45%' }}>
+    <Paper
+      elevation={3}
+      sx={{ margin: 'auto', marginTop: '30px', p: 4, width: '60%' }}
+    >
       <Typography variant='h4' gutterBottom textAlign={'center'}>
         Update House
       </Typography>
@@ -249,7 +252,7 @@ function UpdateHouseForm({ data }) {
               <MenuItem value='sale'>Sale</MenuItem>
             </Select>
           </Grid>
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <TextField
               label='Rate'
               name='rate'
@@ -257,7 +260,7 @@ function UpdateHouseForm({ data }) {
               onChange={handleChangeInput}
               fullWidth
             />
-          </Grid>
+          </Grid> */}
           <Grid item xs={6}>
             <TextField
               label='Bedrooms'

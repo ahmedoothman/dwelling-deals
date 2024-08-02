@@ -93,7 +93,7 @@ function AddHouseForm() {
       formData.append('imageUrl', newHouse.imageUrl);
       formData.append('price', newHouse.price);
       formData.append('type', type);
-      formData.append('rate', newHouse.rate);
+      formData.append('rate', '3');
       formData.append('bedrooms', newHouse.bedrooms);
       formData.append('bathrooms', newHouse.bathrooms);
       formData.append('area', newHouse.area);
@@ -131,7 +131,7 @@ function AddHouseForm() {
   return (
     <Paper
       elevation={3}
-      sx={{ margin: 'auto', marginTop: '30px', p: 4, width: '45%' }}
+      sx={{ margin: 'auto', marginTop: '30px', p: 4, width: '60%' }}
     >
       <Typography variant='h4' gutterBottom textAlign={'center'}>
         Add New House
@@ -247,7 +247,7 @@ function AddHouseForm() {
             </Select>
           </Grid>
 
-          <Grid item xs={12}>
+          {/* <Grid item xs={12}>
             <TextField
               label='Rate'
               name='rate'
@@ -256,7 +256,7 @@ function AddHouseForm() {
               fullWidth
               required
             />
-          </Grid>
+          </Grid> */}
 
           <Grid item xs={6}>
             <TextField

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Box, Button, Grid } from '@mui/material';
+import { Alert, Box, Button, Grid } from '@mui/material';
 import HouseCard from '../../../components/myhouses/HouseCard';
 import {
   getMyHousesService,
@@ -15,6 +15,7 @@ import { housesActions } from '../../../store/houses-slice';
 import PageHeader from '../../../components/dashboard/PageHeader';
 function MyHouses() {
   const [Myhouses, setMyhouses] = useState([]);
+  const [pending, setPending] = useState(false);
   const dispatch = useDispatch();
   const deleteHouse = (id) => {
     deleteMyHousesService(id);
@@ -24,8 +25,10 @@ function MyHouses() {
 
   useEffect(function () {
     async function FetchMyHouses() {
+      setPending(true);
       const houses = await getMyHousesService();
       setMyhouses(houses.data);
+      setPending(false);
     }
     FetchMyHouses();
   }, []);
@@ -37,7 +40,26 @@ function MyHouses() {
       }}
     >
       <PageHeader title={'My Houses'} numberOfResults={Myhouses.length} />
-      {Myhouses.length === 0 && (
+
+      {Myhouses.length === 0 && !pending && (
+        <Box
+          sx={{
+            display: 'flex',
+            flexDirection: 'row',
+            justifyContent: 'center',
+          }}
+        >
+          <Alert
+            severity='info'
+            sx={{
+              marginTop: '20px',
+            }}
+          >
+            Your houses list is empty
+          </Alert>
+        </Box>
+      )}
+      {pending && (
         <Box
           sx={{
             textAlign: 'center',
@@ -51,7 +73,7 @@ function MyHouses() {
           <GridLoader color={PRIMARY_COLOR_DARK} loading={true} size={20} />
         </Box>
       )}
-      {Myhouses.length > 0 && (
+      {Myhouses.length > 0 && !pending && (
         <>
           <Box
             sx={{
