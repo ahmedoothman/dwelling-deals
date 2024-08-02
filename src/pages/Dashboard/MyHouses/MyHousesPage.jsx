@@ -12,6 +12,7 @@ import { PRIMARY_COLOR_DARK } from '../../../constants/styles/colors';
 import GridLoader from 'react-spinners/GridLoader';
 import { useDispatch } from 'react-redux';
 import { housesActions } from '../../../store/houses-slice';
+import PageHeader from '../../../components/dashboard/PageHeader';
 function MyHouses() {
   const [Myhouses, setMyhouses] = useState([]);
   const dispatch = useDispatch();
@@ -30,7 +31,12 @@ function MyHouses() {
   }, []);
 
   return (
-    <Box>
+    <Box
+      sx={{
+        margin: '40px',
+      }}
+    >
+      <PageHeader title={'My Houses'} numberOfResults={Myhouses.length} />
       {Myhouses.length === 0 && (
         <Box
           sx={{
@@ -47,7 +53,13 @@ function MyHouses() {
       )}
       {Myhouses.length > 0 && (
         <>
-          <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+          <Box
+            sx={{
+              display: 'flex',
+              justifyContent: 'flex-end',
+              marginBottom: '10px',
+            }}
+          >
             <Button
               variant='contained'
               sx={{ mr: '23px', mt: '20px' }}
@@ -70,7 +82,6 @@ function MyHouses() {
                   item
                   xs={12}
                   md={4}
-                  lg={3}
                   key={index}
                   sx={{
                     padding: '5px',

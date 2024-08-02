@@ -6,8 +6,8 @@ function SimpleFooter() {
     <Box
       component='footer'
       sx={{
-        backgroundColor: 'secondary.main',
-        color: 'primary.main',
+        backgroundColor: 'primary.main',
+        color: 'white',
         py: 3,
         mt: 8,
       }}

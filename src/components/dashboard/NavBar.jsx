@@ -70,7 +70,7 @@ function NavBar() {
       <AppBar
         position='static'
         sx={{
-          backgroundColor: 'secondary.main',
+          backgroundColor: 'primary.main',
           boxShadow: 'none',
           padding: '2px 0',
           fontFamily: 'Roboto, sans-serif',
@@ -89,7 +89,7 @@ function NavBar() {
                 fontFamily: 'monospace',
                 fontWeight: 700,
                 fontSize: { xs: '1.5em', md: '2em' },
-                color: 'black',
+                color: 'white',
                 textDecoration: 'none',
                 marginLeft: { xs: 1, md: 2 },
                 display: { sm: 'flex' },
@@ -119,9 +119,8 @@ function NavBar() {
                     margin: '0 10px',
                     fontSize: '1em',
                     fontWeight: '500',
-                    backgroundColor: isActive
-                      ? 'rgba(0, 0, 0, 0.1)'
-                      : 'transparent',
+                    backgroundColor: isActive ? '#9cc0cf9a' : 'transparent',
+                    color: 'white',
                   })}
                 >
                   {page.title}
@@ -148,7 +147,7 @@ function NavBar() {
                     display: 'flex',
                     alignItems: 'center',
                     gap: 1,
-                    backgroundColor: 'rgba(0, 0, 0, 0.1)',
+                    backgroundColor: 'secondary.main',
                     paddingRight: '10px',
                     borderRadius: '10px',
                   }}

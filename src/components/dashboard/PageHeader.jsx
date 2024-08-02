@@ -17,7 +17,7 @@ function PageHeader({ title, numberOfResults, styles }) {
         ...styles,
       }}
     >
-      <Typography variant='h4' gutterBottom>
+      <Typography variant='h5' gutterBottom>
         {title}
       </Typography>
       <Typography

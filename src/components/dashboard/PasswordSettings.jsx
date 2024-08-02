@@ -58,8 +58,8 @@ function PasswordSettings() {
   return (
     <Box
       sx={{
-        backgroundColor: 'secondary.main',
-        width: '50%',
+        // backgroundColor: 'secondary.main',
+        width: '80%',
         margin: '30px auto',
         padding: '20px',
         borderRadius: '10px',
