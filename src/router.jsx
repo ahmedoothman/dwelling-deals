@@ -30,6 +30,8 @@ const UpdateHousePage = lazy(() =>
   import('./pages/Dashboard/MyHouses/UpdateHouse.jsx')
 );
 
+const Settings = lazy(() => import('./pages/Dashboard/Settings.jsx'));
+
 // auth
 const AuthBase = lazy(() => import('./pages/Auth/AuthBase.jsx'));
 const Login = lazy(() => import('./pages/Auth/LoginPage.jsx'));
@@ -107,6 +109,10 @@ const routes = [
           {
             path: 'admin',
             element: <ApproveHousePage />,
+          },
+          {
+            path: 'settings',
+            element: <Settings />,
           },
         ],
       },

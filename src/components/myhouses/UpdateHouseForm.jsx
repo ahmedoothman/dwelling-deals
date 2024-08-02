@@ -9,6 +9,8 @@ import {
   Select,
   MenuItem,
   CircularProgress,
+  Snackbar,
+  Alert,
 } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
@@ -37,6 +39,10 @@ function UpdateHouseForm({ data }) {
 
   const [loading, setLoading] = useState(false);
 
+  // Snackbar state
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success');
   useEffect(() => {
     if (data) {
       setNewHouse({
@@ -118,30 +124,27 @@ function UpdateHouseForm({ data }) {
 
     try {
       const response = await patchMyHousesService(data._id, formData);
-      setNewHouse({
-        address: {
-          street: '',
-          city: '',
-          governorate: '',
-        },
-        images: [],
-        title: '',
-        description: '',
-        price: '',
-        type: '',
-        imageUrl: '',
-        rate: '',
-        bedrooms: '',
-        bathrooms: '',
-        area: '',
-      });
-      dispatch(housesActions.updateHouse(response.data));
-      navigate('/dashboard/myhouses');
+      setSnackbarMessage('House updated successfully!');
+      setSnackbarSeverity('success');
+      setSnackbarOpen(true);
+
+      // Wait 3 seconds before navigating
+      setTimeout(() => {
+        dispatch(housesActions.updateHouse(response.data));
+        navigate('/dashboard/myhouses');
+      }, 3000);
     } catch (error) {
+      setSnackbarMessage('Error updating house. Please try again.');
+      setSnackbarSeverity('error');
+      setSnackbarOpen(true);
       console.error('Error submitting form:', error);
     } finally {
       setLoading(false);
     }
+  };
+
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
   };
 
   return (
@@ -296,6 +299,19 @@ function UpdateHouseForm({ data }) {
           </Grid>
         </Grid>
       </form>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={snackbarSeverity}
+          variant='filled'
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Paper>
   );
 }

@@ -146,3 +146,76 @@ export const resetPasswordService = async (otp, password, passwordConfirm) => {
     }
   }
 };
+
+// change password
+export const changePasswordService = async (
+  passwordCurrent,
+  password,
+  passwordConfirm
+) => {
+  const data = {
+    passwordCurrent,
+    password,
+    passwordConfirm,
+  };
+  try {
+    const response = await axios.patch(
+      `${API_URL}/api/users/updateMyPassword`,
+      data,
+      {
+        headers: {
+          Authorization: `Bearer ${Cookies.get('token')}`,
+        },
+      }
+    );
+    return { status: 'success', data: response.data };
+  } catch (error) {
+    if (error.code === 'ERR_NETWORK') {
+      console.log(error);
+      return {
+        status: 'error',
+        statusCode: error.code,
+        message: error.message + ' Please check your internet connection',
+      };
+    } else {
+      return {
+        status: 'error',
+        statusCode: error.response.statusCode,
+        message: error.response.data.message,
+      };
+    }
+  }
+};
+
+// update me
+
+export const updateMeService = async (name, email, phoneNumber) => {
+  const data = {
+    name,
+    email,
+    phoneNumber,
+  };
+
+  try {
+    const response = await axios.patch(`${API_URL}/api/users/updateMe`, data, {
+      headers: {
+        Authorization: `Bearer ${Cookies.get('token')}`,
+      },
+    });
+    return { status: 'success', data: response.data.data };
+  } catch (error) {
+    if (error.code === 'ERR_NETWORK') {
+      return {
+        status: 'error',
+        statusCode: error.code,
+        message: error.message + ' Please check your internet connection',
+      };
+    } else {
+      return {
+        status: 'error',
+        statusCode: error.response.statusCode,
+        message: error.response.data.message,
+      };
+    }
+  }
+};
