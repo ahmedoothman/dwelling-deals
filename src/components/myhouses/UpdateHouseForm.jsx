@@ -125,6 +125,7 @@ function UpdateHouseForm({ data }) {
     const response = await patchMyHousesService(data._id, formData);
 
     if (response.status === 'success') {
+      dispatch(housesActions.updateHouse(response.data));
       setSnackbarMessage('House edited successfully!');
       setSnackbarSeverity('success');
       setSnackbarOpen(true);
