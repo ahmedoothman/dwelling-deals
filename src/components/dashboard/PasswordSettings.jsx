@@ -40,7 +40,9 @@ function PasswordSettings() {
     if (response.status === 'success') {
       setSnackbarMessage('Password changed successfully!');
       setSnackbarSeverity('success');
-      navigate('/auth');
+      setTimeout(() => {
+        navigate('/auth');
+      }, 2000);
     } else {
       setSnackbarMessage(response.message || 'An error occurred');
       setSnackbarSeverity('error');

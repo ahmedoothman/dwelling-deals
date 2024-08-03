@@ -111,7 +111,7 @@ function AddHouseForm() {
       setSnackbarOpen(true);
       setTimeout(() => {
         navigate('/dashboard/myhouses');
-      }, 3000);
+      }, 2000);
     } else {
       setSnackbarMessage('Error adding house. Please try again.');
       setSnackbarSeverity('error');
