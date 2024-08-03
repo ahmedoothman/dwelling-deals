@@ -122,25 +122,21 @@ function UpdateHouseForm({ data }) {
       if (image) formData.append('images', image);
     });
 
-    try {
-      const response = await patchMyHousesService(data._id, formData);
-      setSnackbarMessage('House updated successfully!');
+    const response = await patchMyHousesService(data._id, formData);
+
+    if (response.status === 'success') {
+      setSnackbarMessage('House edited successfully!');
       setSnackbarSeverity('success');
       setSnackbarOpen(true);
-
-      // Wait 3 seconds before navigating
       setTimeout(() => {
-        dispatch(housesActions.updateHouse(response.data));
         navigate('/dashboard/myhouses');
       }, 3000);
-    } catch (error) {
-      setSnackbarMessage('Error updating house. Please try again.');
+    } else {
+      setSnackbarMessage('Error editing house. Please try again.');
       setSnackbarSeverity('error');
       setSnackbarOpen(true);
-      console.error('Error submitting form:', error);
-    } finally {
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   const handleCloseSnackbar = () => {

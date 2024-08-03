@@ -83,45 +83,41 @@ function AddHouseForm() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setLoading(true);
-    try {
-      const formData = new FormData();
-      formData.append('address[street]', newHouse.address.street);
-      formData.append('address[city]', newHouse.address.city);
-      formData.append('address[governorate]', newHouse.address.governorate);
-      formData.append('title', newHouse.title);
-      formData.append('description', newHouse.description);
-      formData.append('imageUrl', newHouse.imageUrl);
-      formData.append('price', newHouse.price);
-      formData.append('type', type);
-      formData.append('rate', '3');
-      formData.append('bedrooms', newHouse.bedrooms);
-      formData.append('bathrooms', newHouse.bathrooms);
-      formData.append('area', newHouse.area);
+    const formData = new FormData();
+    formData.append('address[street]', newHouse.address.street);
+    formData.append('address[city]', newHouse.address.city);
+    formData.append('address[governorate]', newHouse.address.governorate);
+    formData.append('title', newHouse.title);
+    formData.append('description', newHouse.description);
+    formData.append('imageUrl', newHouse.imageUrl);
+    formData.append('price', newHouse.price);
+    formData.append('type', type);
+    formData.append('rate', '3');
+    formData.append('bedrooms', newHouse.bedrooms);
+    formData.append('bathrooms', newHouse.bathrooms);
+    formData.append('area', newHouse.area);
 
-      newHouse.images.forEach((image) => {
-        formData.append('images', image);
-      });
+    newHouse.images.forEach((image) => {
+      formData.append('images', image);
+    });
 
-      const response = await postMyHousesService(formData);
-      const tempData = { ...response.data, realtor: user };
-      dispatch(housesActions.addHouse(tempData));
+    const response = await postMyHousesService(formData);
+    const tempData = { ...response.data, realtor: user };
+    dispatch(housesActions.addHouse(tempData));
 
+    if (response.status === 'success') {
       setSnackbarMessage('House added successfully!');
       setSnackbarSeverity('success');
       setSnackbarOpen(true);
-
-      // Wait 3 seconds before navigating
       setTimeout(() => {
         navigate('/dashboard/myhouses');
       }, 3000);
-    } catch (error) {
+    } else {
       setSnackbarMessage('Error adding house. Please try again.');
       setSnackbarSeverity('error');
       setSnackbarOpen(true);
-      console.error('Error submitting form:', error);
-    } finally {
-      setLoading(false);
     }
+    setLoading(false);
   };
 
   const handleCloseSnackbar = () => {
