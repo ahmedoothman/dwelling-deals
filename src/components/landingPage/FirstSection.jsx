@@ -27,7 +27,7 @@ function FirstSection() {
       >
         <Box
           sx={{
-            backgroundImage: 'url(./src/assets/images/house-3.jpeg)',
+            backgroundImage: 'url(/assets/images/house-3.jpeg)',
             position: 'absolute',
             top: { xs: '42%', md: '40%', lg: '15%' },
             right: 0,

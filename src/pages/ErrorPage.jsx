@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Typography, Button, Container, CardMedia } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
-import Icon404 from '../assets/icons/404.png';
+import Icon404 from '/assets/icons/404.png';
 import AuthWrap from '../components/Auth/AuthWrap';
 import { DANGER_COLOR, PRIMARY_COLOR_DARK } from '../constants/styles/colors';
 const ErrorPage = () => {
