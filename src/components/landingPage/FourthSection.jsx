@@ -34,7 +34,7 @@ const ExplorePart = () => {
         >
           <CardMedia
             component={'img'}
-            image='src\assets\images\2.jpg'
+            image='/assets/images/2.jpg'
             height='200px'
           ></CardMedia>
           <CardContent>
@@ -78,7 +78,7 @@ const ExplorePart = () => {
         >
           <CardMedia
             component={'img'}
-            image='src\assets\images\bluehouse.png'
+            image='/assets/images/bluehouse.png'
             height='200px'
           ></CardMedia>
           <CardContent>
@@ -122,7 +122,7 @@ const ExplorePart = () => {
         >
           <CardMedia
             component={'img'}
-            image='src\assets\images\cozyhome.jpg'
+            image='/assets/images/cozyhome.jpg'
             height='200px'
           ></CardMedia>
           <CardContent>
