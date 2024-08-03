@@ -30,7 +30,7 @@ function HouseCard(props) {
       <Card
         sx={{
           width: '100%',
-          maxWidth: '360px',
+          maxWidth: { xs: '100%', md: '360px' },
           margin: { xs: '10px 0', md: '10px' },
           '&:hover': {
             boxShadow: `5px 5px 24px ${grey[300]}`,
