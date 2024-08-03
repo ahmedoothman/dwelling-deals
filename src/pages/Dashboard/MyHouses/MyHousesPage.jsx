@@ -39,9 +39,9 @@ function MyHouses() {
         margin: '40px',
       }}
     >
-      <PageHeader title={'My Houses'} numberOfResults={Myhouses.length} />
+      <PageHeader title={'My Houses'} numberOfResults={Myhouses?.length} />
 
-      {Myhouses.length === 0 && !pending && (
+      {Myhouses?.length === 0 && !pending && (
         <Box
           sx={{
             display: 'flex',
@@ -73,7 +73,7 @@ function MyHouses() {
           <GridLoader color={PRIMARY_COLOR_DARK} loading={true} size={20} />
         </Box>
       )}
-      {Myhouses.length > 0 && !pending && (
+      {Myhouses?.length > 0 && !pending && (
         <>
           <Box
             sx={{

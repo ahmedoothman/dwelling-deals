@@ -8,9 +8,12 @@ import {
   Alert,
   Box,
 } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 import { changePasswordService } from '../../services/userService'; // Import your password change service
 
 function PasswordSettings() {
+  const navigate = useNavigate();
+
   const [currentPassword, setCurrentPassword] = useState('');
   const [password, setPassword] = useState('');
   const [passwordConfirm, setPasswordConfirm] = useState('');
@@ -29,26 +32,21 @@ function PasswordSettings() {
 
     setLoading(true);
 
-    try {
-      const response = await changePasswordService(
-        currentPassword,
-        password,
-        passwordConfirm
-      );
-      if (response.status === 'success') {
-        setSnackbarMessage('Password changed successfully!');
-        setSnackbarSeverity('success');
-      } else {
-        setSnackbarMessage(response.message || 'An error occurred');
-        setSnackbarSeverity('error');
-      }
-    } catch (error) {
-      setSnackbarMessage('An error occurred. Please try again.');
+    const response = await changePasswordService(
+      currentPassword,
+      password,
+      passwordConfirm
+    );
+    if (response.status === 'success') {
+      setSnackbarMessage('Password changed successfully!');
+      setSnackbarSeverity('success');
+      navigate('/auth');
+    } else {
+      setSnackbarMessage(response.message || 'An error occurred');
       setSnackbarSeverity('error');
-    } finally {
-      setSnackbarOpen(true);
-      setLoading(false);
     }
+    setSnackbarOpen(true);
+    setLoading(false);
   };
 
   const handleCloseSnackbar = () => {

@@ -17,17 +17,25 @@ import { authActions } from '../../store/auth-slice';
 import Cookies from 'js-cookie';
 
 function NavBar() {
+  const user = useSelector((state) => state.auth.user); // Assuming user data is stored in auth slice
+
   const [pages, setPages] = useState([
     { title: 'Home', path: '/dashboard' },
     { title: 'Buy House', path: '/dashboard/sale' },
     { title: 'Rent House', path: '/dashboard/rent' },
     { title: 'Wishlist', path: '/dashboard/wishlist' },
+    ...(user?.role !== 'user'
+      ? [{ title: 'My Houses', path: '/dashboard/myhouses' }]
+      : []),
+
+    ...(user?.role === 'admin'
+      ? [{ title: 'Admin', path: '/dashboard/admin' }]
+      : []),
   ]);
   const [anchorElNav, setAnchorElNav] = React.useState(null);
   const [anchorElUser, setAnchorElUser] = React.useState(null);
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const user = useSelector((state) => state.auth.user); // Assuming user data is stored in auth slice
   const wishlist = useSelector((state) => state.houses.wishlist);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
@@ -51,20 +59,20 @@ function NavBar() {
     navigate('/auth');
   };
 
-  useEffect(() => {
-    if (user?.role !== 'user') {
-      setPages((prevPages) => [
-        ...prevPages,
-        { title: 'My Houses', path: '/dashboard/myhouses' },
-      ]);
-    }
-    if (user?.role === 'admin') {
-      setPages((prevPages) => [
-        ...prevPages,
-        { title: 'Admin', path: '/dashboard/admin' },
-      ]);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if (user?.role !== 'user') {
+  //     setPages((prevPages) => [
+  //       ...prevPages,
+  //       { title: 'My Houses', path: '/dashboard/myhouses' },
+  //     ]);
+  //   }
+  //   if (user?.role === 'admin') {
+  //     setPages((prevPages) => [
+  //       ...prevPages,
+  //       { title: 'Admin', path: '/dashboard/admin' },
+  //     ]);
+  //   }
+  // }, [user]);
 
   return (
     <>

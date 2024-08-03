@@ -54,6 +54,7 @@ function SideFilter({ purpose = 'sale', filtersOptions = {} }) {
           height: '80%',
           // backgroundColor: 'rgba(255, 255, 255, 0.8)', // Background with opacity for the inner box
           backgroundColor: '#9cc0cf3f',
+          borderRadius: 2,
         }}
       >
         <Typography variant='h6' gutterBottom>
