@@ -21,7 +21,7 @@ const SecoundSection = () => {
           <Grid item xs={12} md={6}>
             <Box
               sx={{
-                backgroundImage: `url("src/assets/images/secabout.jpg")`,
+                backgroundImage: `url("/assets/images/secabout.jpg")`,
                 backgroundSize: 'cover',
                 width: '70%',
                 margin: '0 auto',

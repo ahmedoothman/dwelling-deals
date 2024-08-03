@@ -96,7 +96,7 @@ function NavBar() {
                   my: 2,
                   color: 'black',
                   display: 'inline',
-                  marginRight: '20px',
+                  marginRight: { xs: 0, md: '20px' },
                   textTransform: 'capitalize',
                 }}
               >
@@ -114,7 +114,7 @@ function NavBar() {
                   borderRadius: '5px',
                   padding: '10px 15px',
                   border: 'none',
-                  marginRight: '40px',
+                  marginRight: { xs: 0, md: '40px' },
                   textTransform: 'capitalize',
                 }}
               >
