@@ -97,7 +97,7 @@ function NavBar() {
                 flexGrow: 1,
                 fontFamily: 'monospace',
                 fontWeight: 700,
-                fontSize: { xs: '1.5em', md: '2em' },
+                fontSize: { xs: '1.2em', md: '2em' },
                 color: 'white',
                 textDecoration: 'none',
                 marginLeft: { xs: 1, md: 2 },
@@ -162,11 +162,19 @@ function NavBar() {
                     alignItems: 'center',
                     gap: 1,
                     backgroundColor: 'secondary.main',
-                    paddingRight: '10px',
+                    padding: '0px',
+                    paddingRight: { xs: '2px', md: '10px' },
+
                     borderRadius: '10px',
                   }}
                 >
-                  <IconButton onClick={handleOpenUserMenu}>
+                  <IconButton
+                    onClick={handleOpenUserMenu}
+                    sx={{
+                      padding: { xs: '2px', md: '10px' },
+                      // margin: '0px',
+                    }}
+                  >
                     <Avatar
                       alt={user?.name}
                       sx={{
@@ -187,10 +195,11 @@ function NavBar() {
                     <Typography
                       margin={'0'}
                       sx={{
-                        fontSize: '0.9em',
+                        fontSize: { xs: '0.7em', md: '1em' },
                         color: 'black',
                         fontWeight: 'bold',
                         textTransform: 'capitalize',
+                        margin: '0px',
                       }}
                     >
                       {user?.name}
@@ -198,7 +207,7 @@ function NavBar() {
                     <Typography
                       margin={'0'}
                       sx={{
-                        fontSize: '0.8em',
+                        fontSize: { xs: '0.5em', md: '0.8em' },
                         color: 'primary.main',
                         fontWeight: 'bold',
                         fontStyle: 'italic',
