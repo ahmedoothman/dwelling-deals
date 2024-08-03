@@ -49,7 +49,7 @@ export const getPendingHouses = async () => {
 export const getTopRatedRentHousesService = async () => {
   try {
     const response = await axios.get(
-      `${API_URL}/api/houses?limit=4&type=rent&rate[gte]=4`
+      `${API_URL}/api/houses?limit=3&type=rent&rate[gte]=4`
     );
     return { status: 'success', data: response.data.data };
   } catch (error) {
@@ -72,7 +72,7 @@ export const getTopRatedRentHousesService = async () => {
 export const getTopRatedSellHousesService = async () => {
   try {
     const response = await axios.get(
-      `${API_URL}/api/houses?limit=4&type=sale&rate[gte]=4`
+      `${API_URL}/api/houses?limit=3&type=sale&rate[gte]=4`
     );
     return { status: 'success', data: response.data.data };
   } catch (error) {

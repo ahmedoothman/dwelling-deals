@@ -9,6 +9,7 @@ import Container from '@mui/material/Container';
 import Typography from '@mui/material/Typography';
 import Button from '@mui/material/Button';
 import Box from '@mui/material/Box';
+import Badge from '@mui/material/Badge';
 import Avatar from '@mui/material/Avatar';
 import { NavLink, Link, useNavigate } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
@@ -27,7 +28,7 @@ function NavBar() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
   const user = useSelector((state) => state.auth.user); // Assuming user data is stored in auth slice
-
+  const wishlist = useSelector((state) => state.houses.wishlist);
   const handleOpenNavMenu = (event) => {
     setAnchorElNav(event.currentTarget);
   };
@@ -123,7 +124,13 @@ function NavBar() {
                     color: 'white',
                   })}
                 >
-                  {page.title}
+                  {page.title === 'Wishlist' ? (
+                    <Badge badgeContent={wishlist.length} color='info'>
+                      {page.title}
+                    </Badge>
+                  ) : (
+                    page.title
+                  )}
                 </Button>
               ))}
             </Box>

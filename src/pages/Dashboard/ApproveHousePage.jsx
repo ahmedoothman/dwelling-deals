@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
-import { Box, Grid, Alert } from '@mui/material';
-import { getPendingHouses } from '../../services/houseService';
+import { Box, Grid, Snackbar, Alert, Button } from '@mui/material';
+import {
+  getPendingHouses,
+  approveHousesService,
+} from '../../services/houseService';
 import HouseCard from '../../components/admin/HouseCard';
 import PageHeader from '../../components/dashboard/PageHeader';
-import { approveHousesService } from '../../services/houseService';
+
 function ApproveHousePage() {
   const [houses, setHouses] = useState([]);
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState('');
+  const [snackbarSeverity, setSnackbarSeverity] = useState('success'); // 'success' or 'error'
+
   useEffect(() => {
     const fetchHouses = async () => {
       const response = await getPendingHouses();
@@ -13,24 +20,37 @@ function ApproveHousePage() {
     };
     fetchHouses();
   }, []);
+
+  const handleCloseSnackbar = () => {
+    setSnackbarOpen(false);
+  };
+
   const approveHouse = async (id) => {
-    const response = await approveHousesService(id);
-    if (response.status === 'success') {
-      setHouses(houses.filter((house) => house._id !== id));
+    try {
+      const response = await approveHousesService(id);
+      if (response.status === 'success') {
+        setHouses(houses.filter((house) => house._id !== id));
+        setSnackbarMessage('House approved successfully!');
+        setSnackbarSeverity('success');
+      } else {
+        setSnackbarMessage('Failed to approve house.');
+        setSnackbarSeverity('error');
+      }
+    } catch (error) {
+      console.error('Error approving house:', error);
+      setSnackbarMessage('An error occurred while approving the house.');
+      setSnackbarSeverity('error');
+    } finally {
+      setSnackbarOpen(true);
     }
   };
+
   return (
-    <Box
-      sx={{
-        margin: '40px',
-      }}
-    >
+    <Box sx={{ margin: '40px' }}>
       <PageHeader
         title='Approve House'
         numberOfResults={houses.length}
-        styles={{
-          margin: '10px',
-        }}
+        styles={{ margin: '10px' }}
       />
       <Grid container spacing={2}>
         {houses?.map((house) => (
@@ -46,6 +66,24 @@ function ApproveHousePage() {
           <Alert severity='info'>No pending houses to approve</Alert>
         </Box>
       )}
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        action={
+          <Button color='inherit' onClick={handleCloseSnackbar}>
+            Close
+          </Button>
+        }
+      >
+        <Alert
+          onClose={handleCloseSnackbar}
+          severity={snackbarSeverity}
+          variant='filled'
+        >
+          {snackbarMessage}
+        </Alert>
+      </Snackbar>
     </Box>
   );
 }
