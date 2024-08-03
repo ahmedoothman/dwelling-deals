@@ -84,7 +84,7 @@ function ContactUs() {
             <Grid item xd={12} md={6}>
               <Box
                 component={'img'}
-                src='./src/assets/images/HouseUs.jpg'
+                src='/assets/images/HouseUs.jpg'
                 alt='House'
                 style={{ width: '100%', height: '100%' }}
               ></Box>
