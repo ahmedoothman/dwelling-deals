@@ -2,7 +2,7 @@ import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom/client';
 
 // styles
-import styles from './main.module.scss';
+import './main.scss';
 
 // router
 import { RouterProvider } from 'react-router-dom';
