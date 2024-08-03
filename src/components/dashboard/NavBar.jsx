@@ -123,7 +123,6 @@ function NavBar() {
                   to={page.path}
                   end // This ensures exact path matching
                   style={({ isActive }) => ({
-                    color: 'black',
                     textTransform: 'capitalize',
                     margin: '0 10px',
                     fontSize: '1em',
