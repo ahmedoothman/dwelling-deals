@@ -3,9 +3,10 @@ import Cookies from 'js-cookie';
 import axios from 'axios';
 
 //{{URL}}/api/wishlists
-const token = Cookies.get('token');
+let token = Cookies.get('token');
 //getMyWishList
 export const getMyWishListService = async () => {
+  token = Cookies.get('token');
   try {
     const response = await axios.get(`${API_URL}/api/wishlists`, {
       headers: {
@@ -32,6 +33,7 @@ export const getMyWishListService = async () => {
 
 //addToMyWishList
 export const addToMyWishListService = async (data) => {
+  token = Cookies.get('token');
   try {
     const response = await axios.post(`${API_URL}/api/wishlists`, data, {
       headers: {
@@ -58,6 +60,7 @@ export const addToMyWishListService = async (data) => {
 
 //removeFromMyWishList
 export const removeFromMyWishListService = async (id) => {
+  token = Cookies.get('token');
   try {
     const response = await axios.delete(`${API_URL}/api/wishlists/${id}`, {
       headers: {

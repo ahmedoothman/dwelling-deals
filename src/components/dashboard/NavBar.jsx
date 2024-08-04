@@ -132,7 +132,7 @@ function NavBar() {
                   })}
                 >
                   {page.title === 'Wishlist' ? (
-                    <Badge badgeContent={wishlist.length} color='info'>
+                    <Badge badgeContent={wishlist?.length} color='info'>
                       {page.title}
                     </Badge>
                   ) : (

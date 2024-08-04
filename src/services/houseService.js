@@ -2,9 +2,10 @@ import { API_URL } from '../constants/global/api';
 import Cookies from 'js-cookie';
 import axios from 'axios';
 
-const token = Cookies.get('token');
+let token = Cookies.get('token');
 // get all houses
 export const getAllHousesService = async () => {
+  token = Cookies.get('token');
   try {
     const response = await axios.get(`${API_URL}/api/houses`);
     return { status: 'success', data: response.data.data };
@@ -26,6 +27,7 @@ export const getAllHousesService = async () => {
 };
 //get all pending houses
 export const getPendingHouses = async () => {
+  token = Cookies.get('token');
   try {
     const response = await axios.get(`${API_URL}/api/houses?approved=false`);
     return { status: 'success', data: response.data.data };
@@ -93,6 +95,7 @@ export const getTopRatedSellHousesService = async () => {
 };
 // get my houses
 export const getMyHousesService = async () => {
+  token = Cookies.get('token');
   try {
     const response = await axios.get(`${API_URL}/api/houses/myhouses/realtor`, {
       headers: {
@@ -119,6 +122,7 @@ export const getMyHousesService = async () => {
 
 // post my houses
 export const postMyHousesService = async (data) => {
+  token = Cookies.get('token');
   try {
     const response = await axios.post(
       `${API_URL}/api/houses/myhouses/realtor`,
@@ -149,6 +153,7 @@ export const postMyHousesService = async (data) => {
 
 // patch my houses
 export const patchMyHousesService = async (id, data) => {
+  token = Cookies.get('token');
   try {
     const response = await axios.patch(
       `${API_URL}/api/houses/myhouses/${id}`,
@@ -179,6 +184,7 @@ export const patchMyHousesService = async (id, data) => {
 
 // delete my houses
 export const deleteMyHousesService = async (id) => {
+  token = Cookies.get('token');
   try {
     const response = await axios.delete(
       `${API_URL}/api/houses/myhouses/${id}`,
@@ -208,6 +214,7 @@ export const deleteMyHousesService = async (id) => {
 
 // aprrove houses
 export const approveHousesService = async (id) => {
+  token = Cookies.get('token');
   try {
     const response = await axios.patch(
       `${API_URL}/api/houses/admin/approve/${id}`,

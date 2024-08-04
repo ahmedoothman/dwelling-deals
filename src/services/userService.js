@@ -70,10 +70,11 @@ export const loginService = async (data) => {
 };
 //getMe
 export const getMeService = async () => {
+  let token = Cookies.get('token');
   try {
     const response = await axios.get(`${API_URL}/api/users/me`, {
       headers: {
-        Authorization: `Bearer ${Cookies.get('token')}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     return { status: 'success', data: response.data.data };
@@ -158,13 +159,14 @@ export const changePasswordService = async (
     password,
     passwordConfirm,
   };
+  let token = Cookies.get('token');
   try {
     const response = await axios.patch(
       `${API_URL}/api/users/updateMyPassword`,
       data,
       {
         headers: {
-          Authorization: `Bearer ${Cookies.get('token')}`,
+          Authorization: `Bearer ${token}`,
         },
       }
     );
@@ -194,11 +196,11 @@ export const updateMeService = async (name, email, phoneNumber) => {
     email,
     phoneNumber,
   };
-
+  let token = Cookies.get('token');
   try {
     const response = await axios.patch(`${API_URL}/api/users/updateMe`, data, {
       headers: {
-        Authorization: `Bearer ${Cookies.get('token')}`,
+        Authorization: `Bearer ${token}`,
       },
     });
     return { status: 'success', data: response.data.data };
