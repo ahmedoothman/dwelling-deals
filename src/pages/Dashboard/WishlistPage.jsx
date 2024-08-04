@@ -16,13 +16,13 @@ function Wishlist() {
     >
       <PageHeader
         title={'Wishlist'}
-        numberOfResults={wishlist.length}
+        numberOfResults={wishlist?.length}
         styles={{
           margin: '10px',
         }}
       />
       {/* houses grid */}
-      {wishlist.length > 0 && (
+      {wishlist?.length > 0 && (
         <Grid container spacing={2}>
           {wishlist.map((house) => (
             <Grid item xs={12} sm={6} md={4} key={house._id}>
@@ -31,7 +31,7 @@ function Wishlist() {
           ))}
         </Grid>
       )}
-      {wishlist.length === 0 && (
+      {wishlist?.length === 0 && (
         <Box
           sx={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}
         >

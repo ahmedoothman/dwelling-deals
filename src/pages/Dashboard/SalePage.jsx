@@ -17,11 +17,11 @@ function SalePage() {
           {/* page header */}
           <PageHeader
             title={'Houses for Sale'}
-            numberOfResults={filteredHouses.length}
+            numberOfResults={filteredHouses?.length}
           />
           {/* houses grid */}
           <Grid container>
-            {filteredHouses.map((house) => (
+            {filteredHouses?.map((house) => (
               <Grid
                 item
                 xs={12}

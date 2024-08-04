@@ -49,7 +49,7 @@ function ApproveHousePage() {
     <Box sx={{ margin: '40px' }}>
       <PageHeader
         title='Approve House'
-        numberOfResults={houses.length}
+        numberOfResults={houses?.length}
         styles={{ margin: '10px' }}
       />
       <Grid container spacing={2}>
@@ -59,7 +59,7 @@ function ApproveHousePage() {
           </Grid>
         ))}
       </Grid>
-      {houses.length === 0 && (
+      {houses?.length === 0 && (
         <Box
           sx={{ marginTop: '20px', display: 'flex', justifyContent: 'center' }}
         >

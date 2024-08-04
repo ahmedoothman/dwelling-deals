@@ -16,10 +16,10 @@ function RentPage() {
         <Box sx={{ padding: 2 }}>
           <PageHeader
             title={'Houses for Rent'}
-            numberOfResults={filteredHouses.length}
+            numberOfResults={filteredHouses?.length}
           />
           <Grid container>
-            {filteredHouses.map((house) => (
+            {filteredHouses?.map((house) => (
               <Grid
                 item
                 xs={12}
