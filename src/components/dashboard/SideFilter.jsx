@@ -18,6 +18,13 @@ function SideFilter({ purpose = 'sale', filtersOptions = {} }) {
 
   const handleClear = () => {
     setFilters(filtersOptions);
+    // apply filter
+
+    if (filters.purpose === 'rent') {
+      navigate(`/dashboard/rent`);
+    } else {
+      navigate(`/dashboard/sale`);
+    }
   };
 
   const applyFiltersHandler = (e) => {

@@ -34,13 +34,13 @@ function Home() {
     <div>
       {/* preview section */}
       <FilterSection />
-      {Sellhouses.length > 0 && RentHouses.length > 0 && (
+      {Sellhouses?.length > 0 && RentHouses?.length > 0 && (
         <>
           <TopPremium title='Top Premium for Rent' data={RentHouses} />
           <TopPremium title='Top Premium for Sale' data={Sellhouses} />
         </>
       )}
-      {(Sellhouses.length === 0 || RentHouses.length === 0) && (
+      {(Sellhouses?.length === 0 || RentHouses?.length === 0) && (
         <div
           style={{
             display: 'flex',
