@@ -75,7 +75,6 @@ export default function RegisterPage() {
             alignItems: 'center',
             justifyContent: 'center',
             fontSize: 'calc(10px + 2vmin)',
-            minHeight: '100vh',
             width: '100%',
           }}
         >
