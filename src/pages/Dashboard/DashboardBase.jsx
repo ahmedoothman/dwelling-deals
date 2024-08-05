@@ -39,7 +39,9 @@ function DashboardBase() {
     //get Wishlist
     const fetchWishlist = async () => {
       const result = await getMyWishListService();
-      dispatch(housesActions.setWishlist(result.data?.houses));
+      if (result.data) {
+        dispatch(housesActions.setWishlist(result.data?.houses));
+      }
     };
     fetchWishlist();
   }, []);
