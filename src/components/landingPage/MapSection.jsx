@@ -18,7 +18,7 @@ const MapSection = () => {
       </Typography>
       <Box
         component='img'
-        src='src/assets/images/World-Map.png'
+        src='/assets/images/World-Map.png'
         alt='map'
         sx={{
           width: { xs: '100%', sm: '90%', md: '80%' },
