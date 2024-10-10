@@ -5,7 +5,8 @@
 ## ✨ Features
 
 - 📱 **Mobile App**: Browse properties on the go, explore listings, and interact with property owners or agents.
-- 💻 **Web App**: Provides an intuitive interface for property exploration, search filters, and user interactions.
+- 💻 **Web App**: Provides an intuitive interface for property exploration, search filters, and user interactions.  
+  [🌐 Live Web App](https://dwelling-deals.vercel.app/)
 - 🔑 **Admin View**: Manage property listings, user roles, transactions, and other key administrative features.
 - 🚀 **Backend**: Built with Node.js and Express, offering RESTful APIs for efficient data management and interaction.
 
@@ -14,7 +15,7 @@
 - **Mobile App**: [📲 Dwelling Deals Mobile App](https://github.com/ahmedoothman/dwelling-deals-mobile-app)  
   Tools: React Native, React Native Paper, Expo
 
-- **Web App**: [🌐 Dwelling Deals Web App](https://github.com/ahmedoothman/dwelling-deals) 
+- **Web App**: [🌐 Dwelling Deals Web App](https://github.com/ahmedoothman/dwelling-deals)  
   Tools: Vite, React, Material-UI
 
 - **Backend**: [⚙️ Dwelling Deals Backend](https://github.com/ahmedoothman/dwelling-deals-server)  
@@ -67,6 +68,3 @@ Check out the UI/UX design of Dwelling Deals on Behance:
 
 Contributions are welcome! Please feel free to submit a Pull Request or open an Issue to help improve the project.
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
