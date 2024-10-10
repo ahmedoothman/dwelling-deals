@@ -23,7 +23,7 @@
 ## 🎨 Design
 
 Check out the UI/UX design of Dwelling Deals on Behance:  
-[🎨 View Design on Behance](https://www.behance.net/ahmedoothman)
+[🎨 View Design on Behance](https://www.behance.net/gallery/204653407/Dwelling-Deals-App)
 
 ## 🚀 Getting Started
 
