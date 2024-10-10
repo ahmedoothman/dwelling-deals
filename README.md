@@ -1,8 +1,72 @@
-# React + Vite
+# 🏡 Dwelling Deals
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+**Dwelling Deals** is a comprehensive real estate platform that allows users to browse, buy, sell, or rent properties. The platform is available as both a mobile and web application, with a dedicated admin view for managing property listings, users, and other platform operations. The backend is powered by Node.js and Express for smooth and scalable server-side operations.
 
-Currently, two official plugins are available:
+## ✨ Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- 📱 **Mobile App**: Browse properties on the go, explore listings, and interact with property owners or agents.
+- 💻 **Web App**: Provides an intuitive interface for property exploration, search filters, and user interactions.
+- 🔑 **Admin View**: Manage property listings, user roles, transactions, and other key administrative features.
+- 🚀 **Backend**: Built with Node.js and Express, offering RESTful APIs for efficient data management and interaction.
+
+## 📂 Repositories
+
+- **Mobile App**: [📲 Dwelling Deals Mobile App](https://github.com/ahmedoothman/dwelling-deals-mobile-app)  
+  Tools: React Native, React Native Paper, Expo
+
+- **Web App**: [🌐 Dwelling Deals Web App](https://github.com/ahmedoothman/dwelling-deals) 
+  Tools: Vite, React, Material-UI
+
+- **Backend**: [⚙️ Dwelling Deals Backend](https://github.com/ahmedoothman/dwelling-deals-server)  
+  Tools: Node.js, Express, MongoDB
+
+## 🎨 Design
+
+Check out the UI/UX design of Dwelling Deals on Behance:  
+[🎨 View Design on Behance](https://www.behance.net/ahmedoothman)
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- **Node.js** installed (for backend and web app development)
+- **Expo CLI** installed (for mobile app development)
+- MongoDB or any other database configured for backend
+
+### 🛠️ Installation
+
+#### 📱 Mobile App
+
+1. Clone the repository:  
+   `git clone https://github.com/ahmedoothman/dwelling-deals-mobile-app`
+2. Install dependencies:  
+   `npm install`
+3. Run the app:  
+   `npx expo start`
+
+#### 💻 Web App (Vite)
+
+1. Clone the repository:  
+   `git clone https://github.com/ahmedoothman/dwelling-deals-web-app`
+2. Install dependencies:  
+   `npm install`
+3. Start the development server:  
+   `npm run dev`
+
+#### ⚙️ Backend
+
+1. Clone the repository:  
+   `git clone https://github.com/ahmedoothman/dwelling-deals-backend`
+2. Install dependencies:  
+   `npm install`
+3. Configure the `.env` file for MongoDB and environment variables.
+4. Start the server:  
+   `npm start`
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request or open an Issue to help improve the project.
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
